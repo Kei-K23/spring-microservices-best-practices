@@ -1,0 +1,13 @@
+version: "4"
+services:
+  ## Mongo Docker Compose Config
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo-data:/data/db
