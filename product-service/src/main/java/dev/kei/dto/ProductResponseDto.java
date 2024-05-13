@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductResponse {
+public class ProductResponseDto {
     private String id;
     private String name;
     private String description;
     private Integer price;
     private Integer stock;
 
-    public ProductResponse from(Product product) {
-        return  ProductResponse.builder()
+    public ProductResponseDto from(Product product) {
+        return  ProductResponseDto.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())

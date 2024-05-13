@@ -1,7 +1,7 @@
 package dev.kei.controller;
 
-import dev.kei.dto.CreateProductRequest;
-import dev.kei.dto.ProductResponse;
+import dev.kei.dto.ProductRequestDto;
+import dev.kei.dto.ProductResponseDto;
 import dev.kei.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +20,31 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse save(@RequestBody CreateProductRequest createProductRequest) {
-        return productService.save(createProductRequest);
+    public ProductResponseDto save(@RequestBody ProductRequestDto productRequestDto) {
+        return productService.save(productRequestDto);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> findAllProducts() {
+    public List<ProductResponseDto> findAllProducts() {
         return productService.findAllProducts();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<ProductResponse> findProductById(@PathVariable String id) {
+    public Optional<ProductResponseDto> findProductById(@PathVariable String id) {
         return productService.findProductById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductResponseDto update(@PathVariable String id, @RequestBody ProductRequestDto productRequestDto) {
+        return productService.update(id, productRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String id) {
+        productService.delete(id);
     }
 }
