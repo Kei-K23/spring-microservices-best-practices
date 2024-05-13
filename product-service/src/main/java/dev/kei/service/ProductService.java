@@ -7,6 +7,7 @@ import dev.kei.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -19,6 +20,13 @@ public class ProductService {
     // get all products
     public List<ProductResponse> findAllProducts() {
         return productRepository.findAll().stream().map(this::mapToProductResponse).toList();
+    }
+
+    // get all products
+    public Optional<ProductResponse> findProductById(String id) {
+        Optional<Product> product = productRepository.findById(id);
+        ProductResponse productResponse = new ProductResponse();
+        return Optional.of(productResponse.from(product.get()));
     }
 
     // create new product
