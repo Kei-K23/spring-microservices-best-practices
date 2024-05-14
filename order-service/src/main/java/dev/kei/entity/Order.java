@@ -21,6 +21,9 @@ public class Order {
     private String customerId;
     @Column(name = "order_code", unique = true)
     private String orderCode;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status", columnDefinition = "varchar(255) default 'PENDING'")
+    private OrderStatus orderStatus;
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 }
