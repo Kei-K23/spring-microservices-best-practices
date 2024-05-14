@@ -40,4 +40,18 @@ public class InventoryService {
         InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
         return inventoryResponseDto.from(inventory);
     }
+
+    public InventoryResponseDto update(String productId, InventoryRequestDto inventoryRequestDto) {
+        Inventory existingInventory = inventoryRepository.findByProductId(productId);
+        existingInventory.setStock(inventoryRequestDto.getStock());
+
+        inventoryRepository.save(existingInventory);
+
+        InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
+        return inventoryResponseDto.from(existingInventory);
+    }
+
+    public void delete(String productId) {
+        inventoryRepository.deleteByProductId(productId);
+    }
 }

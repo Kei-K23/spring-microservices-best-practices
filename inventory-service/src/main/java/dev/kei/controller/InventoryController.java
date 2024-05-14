@@ -34,4 +34,16 @@ public class InventoryController {
     public InventoryResponseDto findInventoryItemByProductId(@RequestParam(name = "productId") String productId) {
         return inventoryService.findInventoryItemByProductId(productId);
     }
+
+    @PutMapping(params = "productId")
+    @ResponseStatus(HttpStatus.OK)
+    public InventoryResponseDto update(@RequestParam(name = "productId") String productId, @RequestBody InventoryRequestDto inventoryRequestDto) {
+        return inventoryService.update(productId, inventoryRequestDto);
+    }
+
+    @DeleteMapping(params = "productId")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@RequestParam(name = "productId") String productId) {
+         inventoryService.delete(productId);
+    }
 }

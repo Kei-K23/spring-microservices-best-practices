@@ -5,29 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/mysql-data/binlog.000007" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql-data/inventory/inventory.ibd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/config/RestClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/repository/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/repository/InventoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-2-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-2-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.2024-05-14T02-11-21Z-00000" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.2024-05-14T02-11-21Z-00000" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-3-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-3-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/journal/WiredTigerLog.0000000007" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo10" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_001" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
