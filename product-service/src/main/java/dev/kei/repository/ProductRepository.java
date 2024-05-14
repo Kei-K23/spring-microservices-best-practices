@@ -1,5 +1,6 @@
 package dev.kei.repository;
 
+import dev.kei.dto.ProductResponseDto;
 import dev.kei.entity.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

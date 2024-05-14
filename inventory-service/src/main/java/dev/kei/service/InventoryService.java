@@ -6,6 +6,8 @@ import dev.kei.entity.Inventory;
 import dev.kei.repository.InventoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InventoryService {
     private final InventoryRepository inventoryRepository;
@@ -19,6 +21,22 @@ public class InventoryService {
         Inventory inventory = inventoryRequestDto.to(inventoryRequestDto);
         inventoryRepository.save(inventory);
 
+        InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
+        return inventoryResponseDto.from(inventory);
+    }
+
+    public List<InventoryResponseDto> findAllInventoryItems() {
+        return inventoryRepository.findAll().stream().map(this::mapToInventoryResponse).toList();
+    }
+
+    public InventoryResponseDto findInventoryItemByProductId(String productId) {
+        Inventory inventory = inventoryRepository.findByProductId(productId);
+
+        InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
+        return inventoryResponseDto.from(inventory);
+    }
+
+    private InventoryResponseDto mapToInventoryResponse(Inventory inventory) {
         InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
         return inventoryResponseDto.from(inventory);
     }
