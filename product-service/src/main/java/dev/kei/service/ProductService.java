@@ -7,6 +7,7 @@ import dev.kei.dto.ProductResponseDto;
 import dev.kei.entity.Product;
 import dev.kei.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class ProductService {
     }
 
     // create new product
+    @Transactional
     public ProductResponseDto save(ProductRequestDto productRequestDto) {
         Product product = Product.builder()
                 .name(productRequestDto.getName())
@@ -41,21 +43,20 @@ public class ProductService {
                 .price(productRequestDto.getPrice())
                 .stock(productRequestDto.getStock())
                 .build();
-
-        productRepository.save(product);
-
         // internal communication with inventory service to create inventory item
         InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
                 .productId(product.getId())
                 .stock(product.getStock())
                 .build();
         inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
+        productRepository.save(product);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         return productResponseDto.from(product);
     }
 
     // TODO add exception handling
+    @Transactional
     public ProductResponseDto update(String id, ProductRequestDto productRequestDto) {
         Optional<Product> optionalProduct = productRepository.findById(id);
 
@@ -65,6 +66,13 @@ public class ProductService {
         existingProduct.setPrice(productRequestDto.getPrice());
         existingProduct.setStock(productRequestDto.getStock());
 
+        // internal communication with inventory service to update inventory item stock
+        InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
+                .productId(existingProduct.getId())
+                .stock(existingProduct.getStock())
+                .build();
+        inventoryServiceClient.updateInventoryItemFromProduct(inventoryRequestDto);
+
         productRepository.save(existingProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
@@ -72,7 +80,11 @@ public class ProductService {
     }
 
     // TODO delete successfully Dto
+    @Transactional
     public void delete(String id) {
+        // internal communication with inventory service to update inventory item stock
+        inventoryServiceClient.deleteInventoryItemFromProduct(id);
+
         productRepository.deleteById(id);
     }
 

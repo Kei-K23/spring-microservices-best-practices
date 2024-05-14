@@ -42,8 +42,8 @@ public class InventoryController {
     }
 
     @DeleteMapping(params = "productId")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void delete(@RequestParam(name = "productId") String productId) {
-         inventoryService.delete(productId);
+        inventoryService.delete(productId);
     }
 }

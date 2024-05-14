@@ -18,20 +18,50 @@ public class InventoryServiceClient {
         this.inventoryRestTemplate = inventoryRestTemplate;
     }
 
-    public InventoryResponseDto createInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {
-        log.info("Calling inventory service");
+    public void createInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {
+        log.info("Calling inventory service to create inventory item");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
         HttpEntity<InventoryRequestDto> requestEntity = new HttpEntity<>(inventoryRequestDto, headers);
-
-
         var response = inventoryRestTemplate.exchange("/inventory",
                 HttpMethod.POST,
                 requestEntity,
                 InventoryResponseDto.class).getBody();
         log.info("Inventory service response: {}", response);
-        return response;
+    }
+
+    public void updateInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {
+        log.info("Calling inventory service to update inventory item");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<InventoryRequestDto> requestEntity = new HttpEntity<>(inventoryRequestDto, headers);
+        var response = inventoryRestTemplate.exchange("/inventory?productId=" + inventoryRequestDto.getProductId(),
+                HttpMethod.PUT,
+                requestEntity,
+                InventoryResponseDto.class).getBody();
+        log.info("Inventory service response: {}", response);
+    }
+
+    public void deleteInventoryItemFromProduct(String productId) {
+        log.info("Calling inventory service to update inventory item");
+
+        // Create headers if needed
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
+
+        var response = inventoryRestTemplate.exchange(
+                "/inventory?productId=" + productId,
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class
+        );
+
+        log.info("Inventory service response: {}", response);
     }
 }

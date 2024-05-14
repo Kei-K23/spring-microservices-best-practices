@@ -52,6 +52,7 @@ public class InventoryService {
     }
 
     public void delete(String productId) {
-        inventoryRepository.deleteByProductId(productId);
+        Inventory inventory = inventoryRepository.findByProductId(productId);
+        inventoryRepository.delete(inventory);
     }
 }
