@@ -1,5 +1,7 @@
 package dev.kei.service;
 
+import dev.kei.client.InventoryServiceClient;
+import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.ProductRequestDto;
 import dev.kei.dto.ProductResponseDto;
 import dev.kei.entity.Product;
@@ -12,9 +14,11 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final InventoryServiceClient inventoryServiceClient;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, InventoryServiceClient inventoryServiceClient) {
         this.productRepository = productRepository;
+        this.inventoryServiceClient = inventoryServiceClient;
     }
 
     // get all products
@@ -37,7 +41,16 @@ public class ProductService {
                 .price(productRequestDto.getPrice())
                 .stock(productRequestDto.getStock())
                 .build();
+
         productRepository.save(product);
+
+        // internal communication with inventory service to create inventory item
+        InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
+                .productId(product.getId())
+                .stock(product.getStock())
+                .build();
+        inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
+
         ProductResponseDto productResponseDto = new ProductResponseDto();
         return productResponseDto.from(product);
     }
@@ -50,6 +63,7 @@ public class ProductService {
         existingProduct.setName(productRequestDto.getName());
         existingProduct.setDescription(productRequestDto.getDescription());
         existingProduct.setPrice(productRequestDto.getPrice());
+        existingProduct.setStock(productRequestDto.getStock());
 
         productRepository.save(existingProduct);
 
