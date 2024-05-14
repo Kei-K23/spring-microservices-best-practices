@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+## Database folder
+
+mongo-data
+mysql-data

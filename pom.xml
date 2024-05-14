@@ -18,6 +18,7 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>product-service</module>
+    <module>inventory-service</module>
   </modules>
 
   <properties>
