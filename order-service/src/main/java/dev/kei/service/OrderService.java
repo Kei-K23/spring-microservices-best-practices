@@ -29,10 +29,12 @@ public class OrderService {
         return orderResponseDto.from(order);
     }
 
+    @Transactional(readOnly = true)
     public List<OrderResponseDto> findAllOrders() {
         return orderRepository.findAll().stream().map(this::mapToOrderResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public OrderResponseDto findOrderById(Long id) {
         Optional<Order> order = orderRepository.findById(id);
 
@@ -40,8 +42,26 @@ public class OrderService {
         return orderResponseDto.from(order.get());
     }
 
+    @Transactional(readOnly = true)
     public List<OrderResponseDto> findOrdersByCustomerId(String customerId) {
         return orderRepository.findAllByCustomerId(customerId).stream().map(this::mapToOrderResponse).toList();
+    }
+
+    @Transactional
+    public OrderResponseDto update(Long id, OrderRequestDto orderRequestDto) {
+        // TODO handle not found order
+        Order order = orderRepository.findById(id).get();
+        order.setOrderItems(orderRequestDto.getOrderItems());
+        order.setOrderStatus(orderRequestDto.getOrderStatus());
+        orderRepository.save(order);
+
+        OrderResponseDto orderResponseDto = new OrderResponseDto();
+        return orderResponseDto.from(order);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        orderRepository.deleteById(id);
     }
 
     private OrderResponseDto mapToOrderResponse(Order order) {

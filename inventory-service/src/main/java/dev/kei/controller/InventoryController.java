@@ -3,6 +3,7 @@ package dev.kei.controller;
 import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.InventoryResponseDto;
 import dev.kei.service.InventoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class InventoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public InventoryResponseDto save(@RequestBody InventoryRequestDto inventoryRequestDto) {
+    public InventoryResponseDto save(@Valid @RequestBody InventoryRequestDto inventoryRequestDto) {
         return inventoryService.save(inventoryRequestDto);
     }
 
@@ -37,7 +38,7 @@ public class InventoryController {
 
     @PutMapping(params = "productId")
     @ResponseStatus(HttpStatus.OK)
-    public InventoryResponseDto update(@RequestParam(name = "productId") String productId, @RequestBody InventoryRequestDto inventoryRequestDto) {
+    public InventoryResponseDto update(@RequestParam(name = "productId") String productId,@Valid @RequestBody InventoryRequestDto inventoryRequestDto) {
         return inventoryService.update(productId, inventoryRequestDto);
     }
 

@@ -3,6 +3,7 @@ package dev.kei.controller;
 import dev.kei.dto.ProductRequestDto;
 import dev.kei.dto.ProductResponseDto;
 import dev.kei.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponseDto save(@RequestBody ProductRequestDto productRequestDto) {
+    public ProductResponseDto save(@Valid @RequestBody ProductRequestDto productRequestDto) {
         return productService.save(productRequestDto);
     }
 
@@ -38,7 +39,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductResponseDto update(@PathVariable String id, @RequestBody ProductRequestDto productRequestDto) {
+    public ProductResponseDto update(@PathVariable String id,@Valid @RequestBody ProductRequestDto productRequestDto) {
         return productService.update(id, productRequestDto);
     }
 

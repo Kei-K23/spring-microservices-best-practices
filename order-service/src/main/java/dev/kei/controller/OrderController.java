@@ -3,6 +3,7 @@ package dev.kei.controller;
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
 import dev.kei.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderResponseDto save(@RequestBody OrderRequestDto orderRequestDto) {
+    public OrderResponseDto save(@Valid @RequestBody OrderRequestDto orderRequestDto) {
         return orderService.save(orderRequestDto);
     }
 
@@ -39,5 +40,17 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     public List<OrderResponseDto> findOrdersByCustomerId(@RequestParam(name = "customerId") String customerId) {
         return orderService.findOrdersByCustomerId(customerId);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderResponseDto update(@PathVariable(name = "id") Long id,@Valid @RequestBody OrderRequestDto orderRequestDto) {
+        return orderService.update(id, orderRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(name = "id") Long id) {
+        orderService.delete(id);
     }
 }
