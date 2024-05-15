@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/OrderStatusUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-discovery/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-discovery/src/main/java/dev/kei/ServiceDiscoveryApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service-discovery/src/test/java/dev/kei/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +78,7 @@
       <recent name="dev.kei.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.InventoryServiceApp">
+  <component name="RunManager" selected="Application.ServiceDiscoveryApp">
     <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
       <module name="inventory-service" />
@@ -116,6 +118,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServiceDiscoveryApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.ServiceDiscoveryApp" />
+      <module name="service-discovery" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -130,26 +145,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="mysql" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServiceDiscoveryApp" />
         <item itemvalue="Application.OrderServiceApp" />
         <item itemvalue="Application.ProductServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
