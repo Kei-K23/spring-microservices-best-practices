@@ -18,10 +18,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String productId;
-    @NotNull
     private Integer price;
-    @NotNull
     private Integer quantity;
 }

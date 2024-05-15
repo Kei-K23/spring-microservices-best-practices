@@ -47,7 +47,7 @@ public class InventoryServiceClient {
     }
 
     public void deleteInventoryItemFromProduct(String productId) {
-        log.info("Calling inventory service to update inventory item");
+        log.info("Calling inventory service to delete inventory item");
 
         // Create headers if needed
         HttpHeaders headers = new HttpHeaders();

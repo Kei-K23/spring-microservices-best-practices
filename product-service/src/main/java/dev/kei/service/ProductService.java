@@ -43,13 +43,19 @@ public class ProductService {
                 .price(productRequestDto.getPrice())
                 .stock(productRequestDto.getStock())
                 .build();
-        // internal communication with inventory service to create inventory item
-        InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
-                .productId(product.getId())
-                .stock(product.getStock())
-                .build();
-        inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
         productRepository.save(product);
+
+        try {
+            // internal communication with inventory service to create inventory item
+            InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
+                    .productId(product.getId())
+                    .stock(product.getStock())
+                    .build();
+            inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
+        } catch (Exception ex) {
+            // If there is an exception, rollback the transaction
+            throw new RuntimeException("Failed to create inventory item, rolling back transaction", ex);
+        }
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         return productResponseDto.from(product);

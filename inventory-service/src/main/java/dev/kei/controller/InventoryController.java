@@ -36,6 +36,12 @@ public class InventoryController {
         return inventoryService.findInventoryItemByProductId(productId);
     }
 
+    @GetMapping(value = "/check", params = "productIdList")
+    @ResponseStatus(HttpStatus.OK)
+    public List<InventoryResponseDto> checkIsStockEnough(@RequestParam(name = "productIdList") List<String> productIdList) {
+        return inventoryService.checkIsStockEnough(productIdList);
+    }
+
     @PutMapping(params = "productId")
     @ResponseStatus(HttpStatus.OK)
     public InventoryResponseDto update(@RequestParam(name = "productId") String productId,@Valid @RequestBody InventoryRequestDto inventoryRequestDto) {

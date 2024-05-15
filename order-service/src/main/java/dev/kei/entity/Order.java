@@ -20,15 +20,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String customerId;
     @Column(name = "order_code", unique = true)
     private String orderCode;
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", columnDefinition = "varchar(255) default 'PENDING'")
-    @NotNull
     private OrderStatus orderStatus;
     @OneToMany(cascade = CascadeType.ALL)
-    @NotNull
     private List<OrderItem> orderItems;
 }

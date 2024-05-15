@@ -1,8 +1,11 @@
 package dev.kei.service;
 
+import dev.kei.client.InventoryServiceClient;
+import dev.kei.dto.InventoryResponseDto;
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
 import dev.kei.entity.Order;
+import dev.kei.entity.OrderItem;
 import dev.kei.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +17,11 @@ import java.util.UUID;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final InventoryServiceClient inventoryServiceClient;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, InventoryServiceClient inventoryServiceClient) {
         this.orderRepository = orderRepository;
+        this.inventoryServiceClient = inventoryServiceClient;
     }
 
     @Transactional
@@ -24,6 +29,20 @@ public class OrderService {
         Order order = orderRequestDto.to(orderRequestDto);
         order.setOrderCode(UUID.randomUUID().toString());
         orderRepository.save(order);
+
+        List<OrderItem> orderItems = order.getOrderItems();
+        List<String> productIdList = orderItems.stream().map(OrderItem::getProductId).toList();
+
+        try {
+            // call inventory service to check products are in stock
+            List<InventoryResponseDto> inventoryResponseDtos = inventoryServiceClient.checkInventoryForStockIsEnough(productIdList);
+            if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
+                throw new RuntimeException("Failed to place order, rolling back transaction");
+            }
+            // TODO call inventory put to update inventory product quantity and call product service to update quantity
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to place order, rolling back transaction", ex);
+        }
 
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         return orderResponseDto.from(order);
@@ -67,5 +86,12 @@ public class OrderService {
     private OrderResponseDto mapToOrderResponse(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         return orderResponseDto.from(order);
+    }
+
+    // check order items is in stock
+    private Boolean isStockEnough(List<OrderItem> orderItems, InventoryResponseDto inventoryResponseDto) {
+        return orderItems.stream().
+                filter(orderItem -> orderItem.getProductId().equals(inventoryResponseDto.getProductId()))
+                .allMatch(orderItem -> inventoryResponseDto.getStock() >= orderItem.getQuantity());
     }
 }
