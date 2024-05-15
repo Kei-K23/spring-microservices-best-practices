@@ -13,7 +13,6 @@ public class RestClientConfig {
     @Bean
     @LoadBalanced
     public RestTemplate inventoryRestTemplate(RestTemplateBuilder restTemplateBuilder) {
-        // TODO change uri when after adding API Gateway
         return restTemplateBuilder.rootUri("http://inventory-service/api/v1").build();
     }
 }

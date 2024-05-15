@@ -1,5 +1,6 @@
 package dev.kei.client;
 
+import com.netflix.discovery.EurekaClient;
 import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.InventoryResponseDto;
 import lombok.extern.slf4j.Slf4j;

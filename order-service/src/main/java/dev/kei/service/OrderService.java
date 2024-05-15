@@ -38,7 +38,7 @@ public class OrderService {
             // call inventory service to check products are in stock
             List<InventoryResponseDto> inventoryResponseDtos = inventoryServiceClient.checkInventoryForStockIsEnough(productIdList);
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
-                throw new RuntimeException("Failed to place order, rolling back transaction");
+                throw new RuntimeException("Failed to place order! No enough stock, rolling back transaction");
             }
         } catch (Exception ex) {
             throw new RuntimeException("Failed to place order, rolling back transaction", ex);
