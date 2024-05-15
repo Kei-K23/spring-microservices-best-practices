@@ -4,6 +4,7 @@ import dev.kei.client.InventoryServiceClient;
 import dev.kei.dto.InventoryResponseDto;
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
+import dev.kei.dto.OrderStatusUpdateRequestDto;
 import dev.kei.entity.Order;
 import dev.kei.entity.OrderItem;
 import dev.kei.repository.OrderRepository;
@@ -39,7 +40,6 @@ public class OrderService {
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
                 throw new RuntimeException("Failed to place order, rolling back transaction");
             }
-            // TODO call inventory put to update inventory product quantity and call product service to update quantity
         } catch (Exception ex) {
             throw new RuntimeException("Failed to place order, rolling back transaction", ex);
         }
@@ -74,6 +74,18 @@ public class OrderService {
         order.setOrderStatus(orderRequestDto.getOrderStatus());
         orderRepository.save(order);
 
+        OrderResponseDto orderResponseDto = new OrderResponseDto();
+        return orderResponseDto.from(order);
+    }
+
+    @Transactional
+    public OrderResponseDto orderStatusUpdate(Long id, OrderStatusUpdateRequestDto orderStatusUpdateRequestDto) {
+        // TODO handle not found order
+        Order order = orderRepository.findById(id).get();
+        order.setOrderStatus(orderStatusUpdateRequestDto.getOrderStatus());
+        orderRepository.save(order);
+
+        // Todo make messaging communication to update stock of inventory and product when order confirm
         OrderResponseDto orderResponseDto = new OrderResponseDto();
         return orderResponseDto.from(order);
     }

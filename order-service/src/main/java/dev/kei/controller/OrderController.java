@@ -2,6 +2,7 @@ package dev.kei.controller;
 
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
+import dev.kei.dto.OrderStatusUpdateRequestDto;
 import dev.kei.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,12 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     public OrderResponseDto update(@PathVariable(name = "id") Long id,@Valid @RequestBody OrderRequestDto orderRequestDto) {
         return orderService.update(id, orderRequestDto);
+    }
+
+    @PutMapping("/status/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderResponseDto orderStatusUpdate(@PathVariable(name = "id") Long id,@Valid @RequestBody OrderStatusUpdateRequestDto orderStatusUpdateRequestDto) {
+        return orderService.orderStatusUpdate(id, orderStatusUpdateRequestDto);
     }
 
     @DeleteMapping("/{id}")

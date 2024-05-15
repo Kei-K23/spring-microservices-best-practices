@@ -5,43 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/RestClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/OrderStatusUpdateRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/entity/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/entity/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/repository/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/repository/InventoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/diagnostic.data/metrics.interim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo10" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo10" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo11_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/inventory/inventory.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/inventory/inventory.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/mysql.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/orders/order_items.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/orders/order_items.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/orders/orders.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/orders/orders.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/orders/orders_order_items.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/orders/orders_order_items.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/OrderRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/OrderRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/ProductRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/ProductRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/InventoryRequestDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,9 +145,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.InventoryServiceApp" />
-        <item itemvalue="Application.ProductServiceApp" />
         <item itemvalue="Application.OrderServiceApp" />
+        <item itemvalue="Application.ProductServiceApp" />
+        <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
       </list>
