@@ -31,5 +31,6 @@
             <artifactId>loki-logback-appender</artifactId>
             <version>1.3.2</version>
         </dependency>
+
     </dependencies>
 </project>
