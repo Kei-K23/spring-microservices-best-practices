@@ -8,6 +8,7 @@ import dev.kei.dto.OrderStatusUpdateRequestDto;
 import dev.kei.entity.Order;
 import dev.kei.entity.OrderItem;
 import dev.kei.repository.OrderRepository;
+import dev.kei.util.KafkaSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,14 @@ import java.util.UUID;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final InventoryServiceClient inventoryServiceClient;
+    private final KafkaSender kafkaSender;
 
-    public OrderService(OrderRepository orderRepository, InventoryServiceClient inventoryServiceClient) {
+    public OrderService(OrderRepository orderRepository,
+                        InventoryServiceClient inventoryServiceClient,
+                        KafkaSender kafkaSender) {
         this.orderRepository = orderRepository;
         this.inventoryServiceClient = inventoryServiceClient;
+        this.kafkaSender = kafkaSender;
     }
 
     @Transactional
@@ -39,6 +44,11 @@ public class OrderService {
             List<InventoryResponseDto> inventoryResponseDtos = inventoryServiceClient.checkInventoryForStockIsEnough(productIdList);
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
                 throw new RuntimeException("Failed to place order! No enough stock, rolling back transaction");
+            } else {
+                // send message to product and inventory services with kafka
+                String productIdListString = productIdList.toString();
+                kafkaSender.sendMessage( productIdListString,"inventory-service");
+                kafkaSender.sendMessage( productIdListString,"product-service");
             }
         } catch (Exception ex) {
             throw new RuntimeException("Failed to place order, rolling back transaction", ex);
