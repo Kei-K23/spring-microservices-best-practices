@@ -16,4 +16,9 @@ public class KafkaTopicConfig {
     public NewTopic inventoryServiceTopic() {
         return TopicBuilder.name("inventory-service").build();
     }
+
+    @Bean
+    public NewTopic notificationServiceTopic() {
+        return TopicBuilder.name("notification-service").build();
+    }
 }

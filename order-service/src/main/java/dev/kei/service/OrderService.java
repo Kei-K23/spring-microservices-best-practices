@@ -50,6 +50,9 @@ public class OrderService {
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
                 throw new RuntimeException("Failed to place order! No enough stock, rolling back transaction");
             }
+            // sent to notification service
+            kafkaSender.sendMessage( "Your order is in pending state! We will be confirm your order as soon as possible",
+                    "notification-service");
             OrderResponseDto orderResponseDto = new OrderResponseDto();
             return orderResponseDto.from(order);
         } catch (Exception ex) {
@@ -100,8 +103,11 @@ public class OrderService {
                 String orderItemsJson = objectMapper.writeValueAsString(orderItems);
                 kafkaSender.sendMessage( orderItemsJson,"inventory-service");
                 kafkaSender.sendMessage( orderItemsJson,"product-service");
-            }
 
+                // sent message to notification service
+                kafkaSender.sendMessage( "Your order is accepted! Thank you and happy shopping!",
+                        "notification-service");
+            }
             OrderResponseDto orderResponseDto = new OrderResponseDto();
             return orderResponseDto.from(order);
         } catch (Exception ex) {

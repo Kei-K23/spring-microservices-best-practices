@@ -5,39 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/dto/OrderItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/util/KafkaReceiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/OrderItemDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/util/KafkaReceiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/NotificationServiceApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/config/KafkaConsumerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/util/KafkaReceiver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/test/java/dev/kei/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/service/InventoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-2-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-2-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-1-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-3-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-3-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/mongod.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/#innodb_redo/#ib_redo13_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/binlog.index" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/binlog.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/mysql.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/config/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +70,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/inventory-service/src/main/java/dev/kei",
+    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/notification-server/src/main/java/dev/kei",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -99,15 +82,15 @@
       <recent name="dev.kei.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/notification-server/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/product-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/order-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/api-gateway/src/main/resources" />
-      <recent name="$PROJECT_DIR$/inventory-service/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.kei.dto" />
       <recent name="dev.kei.config" />
+      <recent name="dev.kei.dto" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">

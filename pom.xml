@@ -22,6 +22,7 @@
     <module>order-service</module>
     <module>service-discovery</module>
     <module>api-gateway</module>
+      <module>notification-server</module>
   </modules>
 
   <properties>
