@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/notification-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/NotificationServiceApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/util/KafkaReceiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-server/src/test/java/dev/kei/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/service/EmailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service-discovery/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/util/KafkaReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-server/src/main/java/dev/kei/util/KafkaReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notification-server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +47,7 @@
     "Application.ApiGatewayApp.executor": "Run",
     "Application.App.executor": "Run",
     "Application.InventoryServiceApp.executor": "Run",
+    "Application.NotificationServiceApp.executor": "Run",
     "Application.OrderServiceApp.executor": "Run",
     "Application.ProductServiceApp.executor": "Run",
     "Application.ServiceDiscoveryApp.executor": "Run",
@@ -93,10 +87,23 @@
       <recent name="dev.kei.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="Application.NotificationServiceApp">
     <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
       <module name="inventory-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.NotificationServiceApp" />
+      <module name="notification-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.kei.*" />
@@ -152,20 +159,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.InventoryServiceApp" />
+      <item itemvalue="Application.NotificationServiceApp" />
       <item itemvalue="Application.ServiceDiscoveryApp" />
       <item itemvalue="Application.OrderServiceApp" />
       <item itemvalue="Application.ProductServiceApp" />
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
     </list>
     <recent_temporary>
       <list>
@@ -173,7 +172,7 @@
         <item itemvalue="Application.OrderServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Application.ServiceDiscoveryApp" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Application.NotificationServiceApp" />
       </list>
     </recent_temporary>
   </component>
