@@ -1,5 +1,6 @@
 package dev.kei.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.kei.client.InventoryServiceClient;
 import dev.kei.dto.InventoryResponseDto;
 import dev.kei.dto.OrderRequestDto;
@@ -7,6 +8,7 @@ import dev.kei.dto.OrderResponseDto;
 import dev.kei.dto.OrderStatusUpdateRequestDto;
 import dev.kei.entity.Order;
 import dev.kei.entity.OrderItem;
+import dev.kei.entity.OrderStatus;
 import dev.kei.repository.OrderRepository;
 import dev.kei.util.KafkaSender;
 import org.springframework.stereotype.Service;
@@ -21,41 +23,38 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final InventoryServiceClient inventoryServiceClient;
     private final KafkaSender kafkaSender;
+    private final ObjectMapper objectMapper;
 
     public OrderService(OrderRepository orderRepository,
                         InventoryServiceClient inventoryServiceClient,
-                        KafkaSender kafkaSender) {
+                        KafkaSender kafkaSender,
+                        ObjectMapper objectMapper) {
         this.orderRepository = orderRepository;
         this.inventoryServiceClient = inventoryServiceClient;
         this.kafkaSender = kafkaSender;
+        this.objectMapper = objectMapper;
     }
 
     @Transactional
     public OrderResponseDto save(OrderRequestDto orderRequestDto) {
-        Order order = orderRequestDto.to(orderRequestDto);
-        order.setOrderCode(UUID.randomUUID().toString());
-        orderRepository.save(order);
-
-        List<OrderItem> orderItems = order.getOrderItems();
-        List<String> productIdList = orderItems.stream().map(OrderItem::getProductId).toList();
-
         try {
+            Order order = orderRequestDto.to(orderRequestDto);
+            order.setOrderCode(UUID.randomUUID().toString());
+            orderRepository.save(order);
+
+            List<OrderItem> orderItems = order.getOrderItems();
+            List<String> productIdList = orderItems.stream().map(OrderItem::getProductId).toList();
+
             // call inventory service to check products are in stock
             List<InventoryResponseDto> inventoryResponseDtos = inventoryServiceClient.checkInventoryForStockIsEnough(productIdList);
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
                 throw new RuntimeException("Failed to place order! No enough stock, rolling back transaction");
-            } else {
-                // send message to product and inventory services with kafka
-                String productIdListString = productIdList.toString();
-                kafkaSender.sendMessage( productIdListString,"inventory-service");
-                kafkaSender.sendMessage( productIdListString,"product-service");
             }
+            OrderResponseDto orderResponseDto = new OrderResponseDto();
+            return orderResponseDto.from(order);
         } catch (Exception ex) {
             throw new RuntimeException("Failed to place order, rolling back transaction", ex);
         }
-
-        OrderResponseDto orderResponseDto = new OrderResponseDto();
-        return orderResponseDto.from(order);
     }
 
     @Transactional(readOnly = true)
@@ -90,14 +89,24 @@ public class OrderService {
 
     @Transactional
     public OrderResponseDto orderStatusUpdate(Long id, OrderStatusUpdateRequestDto orderStatusUpdateRequestDto) {
-        // TODO handle not found order
-        Order order = orderRepository.findById(id).get();
-        order.setOrderStatus(orderStatusUpdateRequestDto.getOrderStatus());
-        orderRepository.save(order);
+        try {
+            Order order = orderRepository.findById(id).get();
+            order.setOrderStatus(orderStatusUpdateRequestDto.getOrderStatus());
+            orderRepository.save(order);
 
-        // Todo make messaging communication to update stock of inventory and product when order confirm
-        OrderResponseDto orderResponseDto = new OrderResponseDto();
-        return orderResponseDto.from(order);
+            if(orderStatusUpdateRequestDto.getOrderStatus().equals(OrderStatus.ACCEPTED)) {
+                List<OrderItem> orderItems = order.getOrderItems();
+                // send message to product and inventory services with kafka
+                String orderItemsJson = objectMapper.writeValueAsString(orderItems);
+                kafkaSender.sendMessage( orderItemsJson,"inventory-service");
+                kafkaSender.sendMessage( orderItemsJson,"product-service");
+            }
+
+            OrderResponseDto orderResponseDto = new OrderResponseDto();
+            return orderResponseDto.from(order);
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to place order, rolling back transaction", ex);
+        }
     }
 
     @Transactional

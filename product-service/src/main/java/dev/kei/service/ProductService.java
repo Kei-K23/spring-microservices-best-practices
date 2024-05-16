@@ -94,6 +94,22 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    @Transactional
+    public void updateStock(String id, Integer stock) {
+        try {
+            Optional<Product> optionalProduct = productRepository.findById(id);
+            Product existingProduct = optionalProduct.get();
+
+            if(existingProduct.getStock() >= stock) {
+                // update the stock
+                existingProduct.setStock(existingProduct.getStock() - stock);
+                productRepository.save(existingProduct);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Error when updating product stock: ", ex);
+        }
+    }
+
     // mapping from product to product response
     private ProductResponseDto mapToProductResponse(Product product) {
         ProductResponseDto productResponseDto = new ProductResponseDto();

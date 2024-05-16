@@ -62,6 +62,19 @@ public class InventoryService {
                 }).filter(inventoryResponseDto -> inventoryResponseDto.getStock() > 0).toList();
     }
 
+    @Transactional
+    public void updateInventoryItemStock(String productId, Integer stock) {
+        try {
+            Inventory existingInventory = inventoryRepository.findByProductId(productId);
+            if(existingInventory.getStock() >= stock) {
+                existingInventory.setStock(existingInventory.getStock() - stock);
+                inventoryRepository.save(existingInventory);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("Error when updating inventory item stock: ", ex);
+        }
+    }
+
     public void delete(String productId) {
         Inventory inventory = inventoryRepository.findByProductId(productId);
         inventoryRepository.delete(inventory);
