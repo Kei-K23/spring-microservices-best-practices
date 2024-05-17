@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,10 @@ public class ProductService {
     // get all products
     public Optional<ProductResponseDto> findProductById(String id) {
         Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()) {
+            throw new NoSuchElementException("Product with id " + id + " not found");
+        }
+        
         ProductResponseDto productResponseDto = new ProductResponseDto();
         return Optional.of(productResponseDto.from(product.get()));
     }
@@ -61,37 +66,48 @@ public class ProductService {
         return productResponseDto.from(product);
     }
 
-    // TODO add exception handling
     @Transactional
     public ProductResponseDto update(String id, ProductRequestDto productRequestDto) {
         Optional<Product> optionalProduct = productRepository.findById(id);
+        if(optionalProduct.isEmpty()) {
+            throw new NoSuchElementException("Product with id " + id + " not found to delete");
+        }
+        try {
+            Product existingProduct = optionalProduct.get();
+            existingProduct.setName(productRequestDto.getName());
+            existingProduct.setDescription(productRequestDto.getDescription());
+            existingProduct.setPrice(productRequestDto.getPrice());
+            existingProduct.setStock(productRequestDto.getStock());
 
-        Product existingProduct = optionalProduct.get();
-        existingProduct.setName(productRequestDto.getName());
-        existingProduct.setDescription(productRequestDto.getDescription());
-        existingProduct.setPrice(productRequestDto.getPrice());
-        existingProduct.setStock(productRequestDto.getStock());
+            // internal communication with inventory service to update inventory item stock
+            InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
+                    .productId(existingProduct.getId())
+                    .stock(existingProduct.getStock())
+                    .build();
+            inventoryServiceClient.updateInventoryItemFromProduct(inventoryRequestDto);
 
-        // internal communication with inventory service to update inventory item stock
-        InventoryRequestDto inventoryRequestDto = InventoryRequestDto.builder()
-                .productId(existingProduct.getId())
-                .stock(existingProduct.getStock())
-                .build();
-        inventoryServiceClient.updateInventoryItemFromProduct(inventoryRequestDto);
+            productRepository.save(existingProduct);
 
-        productRepository.save(existingProduct);
-
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        return productResponseDto.from(existingProduct);
+            ProductResponseDto productResponseDto = new ProductResponseDto();
+            return productResponseDto.from(existingProduct);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
 
-    // TODO delete successfully Dto
     @Transactional
     public void delete(String id) {
-        // internal communication with inventory service to update inventory item stock
-        inventoryServiceClient.deleteInventoryItemFromProduct(id);
-
-        productRepository.deleteById(id);
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isEmpty()) {
+            throw new NoSuchElementException("Product with id " + id + " not found to delete");
+        }
+        try {
+            // internal communication with inventory service to update inventory item stock
+            inventoryServiceClient.deleteInventoryItemFromProduct(id);
+            productRepository.deleteById(id);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
 
     @Transactional

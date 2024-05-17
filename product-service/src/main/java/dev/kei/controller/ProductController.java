@@ -1,19 +1,18 @@
 package dev.kei.controller;
 
-import dev.kei.dto.CustomErrorResponseDto;
 import dev.kei.dto.ProductRequestDto;
 import dev.kei.dto.ProductResponseDto;
 import dev.kei.service.ProductService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
+import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -40,45 +39,75 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @RateLimiter(name = "product-service", fallbackMethod = "findProductByIdFallback")
-    public ResponseEntity<Optional<ProductResponseDto>> findProductById(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.findProductById(id));
+    public ResponseEntity<ProductResponseDto> findProductById(@PathVariable String id) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.findProductById(id).get());
+        }
+        catch (Exception ex) {
+            if(ex instanceof NoSuchElementException) {
+                throw new NoSuchElementException(ex.getMessage());
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
     }
 
     @PutMapping("/{id}")
     @RateLimiter(name = "product-service", fallbackMethod = "updateFallback")
     public ResponseEntity<ProductResponseDto> update(@PathVariable String id,@Valid @RequestBody ProductRequestDto productRequestDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, productRequestDto));
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, productRequestDto));
+        } catch (Exception ex) {
+            if(ex instanceof NoSuchElementException) {
+                throw new NoSuchElementException(ex.getMessage());
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
     }
 
     @DeleteMapping("/{id}")
     @RateLimiter(name = "product-service")
     public void delete(@PathVariable String id) {
-        productService.delete(id);
+        try {
+            productService.delete(id);
+        } catch (Exception ex) {
+            if(ex instanceof NoSuchElementException) {
+                throw new NoSuchElementException(ex.getMessage());
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
     }
 
     // Fallback methods
-    public ResponseEntity<ProductResponseDto> saveFallback(ProductRequestDto productRequestDto, Throwable throwable) {
-        throw new RuntimeException();
+    public ResponseEntity<ProductResponseDto> saveFallback(ProductRequestDto productRequestDto, Exception ex) {
+        handleFallback(ex);
+        return null;
     }
 
-    public ResponseEntity<List<ProductResponseDto>> findAllProductsFallback(Throwable throwable) {
-        log.info("Call fallback method for rate limiting method");
-        throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
+    public ResponseEntity<List<ProductResponseDto>> findAllProductsFallback(Exception ex) {
+        handleFallback(ex);
+        return null;
     }
 
-    public CustomErrorResponseDto findProductByIdFallback(String id, Throwable throwable) {
-        return createFallbackResponse();
+    public ResponseEntity<ProductResponseDto> findProductByIdFallback(String id, Exception ex) {
+        handleFallback(ex);
+        return null;
     }
 
-    public CustomErrorResponseDto updateFallback(String id, ProductRequestDto productRequestDto, Throwable throwable) {
-        return createFallbackResponse();
+    public ResponseEntity<ProductResponseDto> updateFallback(String id, ProductRequestDto productRequestDto, Exception ex) {
+        handleFallback(ex);
+        return null;
     }
 
-    private CustomErrorResponseDto createFallbackResponse() {
-        log.info("Calling fallback method for rate limit");
-        return CustomErrorResponseDto.builder()
-                .code(HttpStatus.TOO_MANY_REQUESTS.value())
-                .message("You have reached your rate limit. Please try again in 60 seconds.")
-                .build();
+    private void handleFallback(Exception ex) {
+        if (ex instanceof NoSuchElementException) {
+            log.info("NotFoundException in fallback");
+            throw new NoSuchElementException("Product not found");
+        } else {
+            log.info("Rate limit exceeded");
+            throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
+        }
     }
 }
