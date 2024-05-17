@@ -1,6 +1,7 @@
 package dev.kei.advice;
 
 import dev.kei.dto.CustomErrorResponseDto;
+import dev.kei.exception.OtherServiceCallException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,16 @@ public class OrderServiceGlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(CustomErrorResponseDto.builder()
                 .status("ORDER-NOT-FOUND")
                 .code(404)
+                .message(ex.getMessage())
+                .build());
+    }
+
+    @ExceptionHandler(OtherServiceCallException.class)
+    public ResponseEntity<CustomErrorResponseDto> handleOtherServiceCallException(RuntimeException ex) {
+        log.info("ProductServiceGlobalExceptionHandler::handleOtherServiceCallException exception caught: {} ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CustomErrorResponseDto.builder()
+                .status("ORDER-CANNOT-PLACE")
+                .code(500)
                 .message(ex.getMessage())
                 .build());
     }

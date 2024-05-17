@@ -3,6 +3,7 @@ package dev.kei.controller;
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
 import dev.kei.dto.OrderStatusUpdateRequestDto;
+import dev.kei.exception.OtherServiceCallException;
 import dev.kei.service.OrderService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
@@ -27,7 +28,17 @@ public class OrderController {
     @PostMapping
     @RateLimiter(name = "order-service", fallbackMethod = "saveFallback")
     public ResponseEntity<OrderResponseDto> save(@Valid @RequestBody OrderRequestDto orderRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(orderRequestDto));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(orderRequestDto));
+        } catch (Exception ex) {
+            if(ex instanceof NoSuchElementException) {
+                throw new NoSuchElementException(ex.getMessage());
+            } else if (ex instanceof OtherServiceCallException) {
+                throw new OtherServiceCallException(ex.getMessage());
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
     }
 
     @GetMapping
@@ -129,6 +140,9 @@ public class OrderController {
         if (ex instanceof NoSuchElementException) {
             log.info("NotFoundException in fallback");
             throw new NoSuchElementException("Order not found");
+        } else if(ex instanceof OtherServiceCallException) {
+            log.info("OtherServiceCallException in fallback");
+            throw new OtherServiceCallException(ex.getMessage());
         } else {
             log.info("Rate limit exceeded");
             throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");

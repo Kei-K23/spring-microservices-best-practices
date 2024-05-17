@@ -102,7 +102,7 @@ public class ProductService {
             throw new NoSuchElementException("Product with id " + id + " not found to delete");
         }
         try {
-            // internal communication with inventory service to update inventory item stock
+            // internal communication with inventory service to delete inventory item stock
             inventoryServiceClient.deleteInventoryItemFromProduct(id);
             productRepository.deleteById(id);
         } catch (Exception ex) {

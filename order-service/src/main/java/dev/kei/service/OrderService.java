@@ -9,6 +9,7 @@ import dev.kei.dto.OrderStatusUpdateRequestDto;
 import dev.kei.entity.Order;
 import dev.kei.entity.OrderItem;
 import dev.kei.entity.OrderStatus;
+import dev.kei.exception.OtherServiceCallException;
 import dev.kei.repository.OrderRepository;
 import dev.kei.util.KafkaSender;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class OrderService {
             // call inventory service to check products are in stock
             List<InventoryResponseDto> inventoryResponseDtos = inventoryServiceClient.checkInventoryForStockIsEnough(productIdList);
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
-                throw new RuntimeException("Failed to place order! No enough stock, rolling back transaction");
+                throw new OtherServiceCallException("Failed to place order! No enough stock.");
             }
             // sent to notification service
             kafkaSender.sendMessage( "Your order is in pending state! We will be confirm your order as soon as possible",
@@ -56,7 +57,11 @@ public class OrderService {
             OrderResponseDto orderResponseDto = new OrderResponseDto();
             return orderResponseDto.from(order);
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to place order, rolling back transaction", ex);
+            if (ex instanceof OtherServiceCallException) {
+                throw new OtherServiceCallException("Failed to place order! No enough stock.");
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
         }
     }
 
