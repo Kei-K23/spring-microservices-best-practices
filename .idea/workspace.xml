@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/system-design-diagram" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/advice/ProductServiceGlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.turtle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/WiredTiger.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-0-6790108586765810933.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/collection-4-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-5-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/index-6-6066444598462501601.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-data/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/#ib_16384_0.dblwr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/mysql.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-data/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-data/undo_002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,37 +38,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Application.ApiGatewayApp.executor": "Run",
-    "Application.App.executor": "Run",
-    "Application.InventoryServiceApp.executor": "Run",
-    "Application.NotificationServiceApp.executor": "Run",
-    "Application.OrderServiceApp.executor": "Run",
-    "Application.ProductServiceApp.executor": "Run",
-    "Application.ServiceDiscoveryApp.executor": "Run",
-    "Docker.docker-compose.yml.broker: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.grafana: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.mongo: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.mysql: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.prometheus: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.tempo: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.zookeeper: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/notification-server/src/main/java/dev/kei",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Application.ApiGatewayApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InventoryServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NotificationServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OrderServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductServiceApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServiceDiscoveryApp.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.broker: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.grafana: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.mongo: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.mysql: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.prometheus: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.tempo: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.zookeeper: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/notification-server/src/main/java/dev/kei&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="dev.kei.entity" />
@@ -90,11 +81,24 @@
       <recent name="$PROJECT_DIR$/api-gateway/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.kei.config" />
       <recent name="dev.kei.dto" />
+      <recent name="dev.kei.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NotificationServiceApp">
+  <component name="RunManager" selected="Application.ApiGatewayApp">
+    <configuration name="ApiGatewayApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.ApiGatewayApp" />
+      <module name="api-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
       <module name="inventory-service" />
@@ -147,19 +151,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceDiscoveryApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.ServiceDiscoveryApp" />
-      <module name="service-discovery" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.kei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -167,19 +158,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.ApiGatewayApp" />
       <item itemvalue="Application.InventoryServiceApp" />
       <item itemvalue="Application.NotificationServiceApp" />
-      <item itemvalue="Application.ServiceDiscoveryApp" />
       <item itemvalue="Application.OrderServiceApp" />
       <item itemvalue="Application.ProductServiceApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ProductServiceApp" />
-        <item itemvalue="Application.OrderServiceApp" />
+        <item itemvalue="Application.ApiGatewayApp" />
         <item itemvalue="Application.InventoryServiceApp" />
-        <item itemvalue="Application.ServiceDiscoveryApp" />
         <item itemvalue="Application.NotificationServiceApp" />
+        <item itemvalue="Application.OrderServiceApp" />
       </list>
     </recent_temporary>
   </component>
