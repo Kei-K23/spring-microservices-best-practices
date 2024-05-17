@@ -30,7 +30,6 @@ public class ProductController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     @RateLimiter(name = "product-service", fallbackMethod = "findAllProductsFallback")
     public ResponseEntity<List<ProductResponseDto>> findAllProducts() {
         return ResponseEntity.ok().body(productService.findAllProducts());
