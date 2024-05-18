@@ -5,21 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/advice/UserServiceGlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/config/ObservationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/AuthConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/CustomUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/AuthRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/AuthTokenResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/UserServiceApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/exception/OtherServiceCallException.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/exception/OtherServiceCallException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/UserServiceApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/AuthServiceApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/advice/UserServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/config/ObservationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/ObservationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/UserRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/repository/AuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/dev/kei/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/dev/kei/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +66,7 @@
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Application.ApiGatewayApp.executor": "Run",
     "Application.App.executor": "Run",
+    "Application.AuthServiceApp.executor": "Run",
     "Application.InventoryServiceApp.executor": "Run",
     "Application.NotificationServiceApp.executor": "Run",
     "Application.OrderServiceApp.executor": "Run",
@@ -95,10 +109,23 @@
       <recent name="dev.kei.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServiceDiscoveryApp">
+  <component name="RunManager" selected="Application.ApiGatewayApp">
     <configuration name="ApiGatewayApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.ApiGatewayApp" />
       <module name="api-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.AuthServiceApp" />
+      <module name="auth-service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.kei.*" />
@@ -122,35 +149,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NotificationServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.NotificationServiceApp" />
+      <module name="notification-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="OrderServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.OrderServiceApp" />
       <module name="order-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.kei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceDiscoveryApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.ServiceDiscoveryApp" />
-      <module name="service-discovery" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.kei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.UserServiceApp" />
-      <module name="user-service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.kei.*" />
@@ -168,19 +182,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.ServiceDiscoveryApp" />
-      <item itemvalue="Application.UserServiceApp" />
+      <item itemvalue="Application.NotificationServiceApp" />
+      <item itemvalue="Application.AuthServiceApp" />
       <item itemvalue="Application.ApiGatewayApp" />
       <item itemvalue="Application.InventoryServiceApp" />
       <item itemvalue="Application.OrderServiceApp" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserServiceApp" />
         <item itemvalue="Application.ApiGatewayApp" />
-        <item itemvalue="Application.ServiceDiscoveryApp" />
-        <item itemvalue="Application.OrderServiceApp" />
+        <item itemvalue="Application.AuthServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
+        <item itemvalue="Application.NotificationServiceApp" />
+        <item itemvalue="Application.OrderServiceApp" />
       </list>
     </recent_temporary>
   </component>

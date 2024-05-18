@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 @Slf4j
-public class UserServiceGlobalExceptionHandler {
+public class AuthServiceGlobalExceptionHandler {
 
     // handle too many requests exception
     @ExceptionHandler(RuntimeException.class)

@@ -14,14 +14,12 @@ public class UserResponseDto {
     private String id;
     private String name;
     private String email;
-    private String password;
 
     public UserResponseDto from(User user) {
         return UserResponseDto.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
-                .password(user.getPassword())
                 .build();
     }
 }

@@ -1,10 +1,14 @@
 package dev.kei.service;
 
+import com.mongodb.DuplicateKeyException;
+import dev.kei.dto.AuthRequestDto;
+import dev.kei.dto.AuthTokenResponseDto;
 import dev.kei.dto.UserRequestDto;
 import dev.kei.dto.UserResponseDto;
 import dev.kei.entity.User;
-import dev.kei.repository.UserRepository;
+import dev.kei.repository.AuthRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,32 +17,37 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
+public class AuthService {
+    private final AuthRepository authRepository;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthService(AuthRepository authRepository, JwtService jwtService, PasswordEncoder passwordEncoder) {
+        this.jwtService = jwtService;
+        this.authRepository = authRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
     public UserResponseDto save(UserRequestDto userRequestDto) {
-        String password = userRequestDto.getPassword();
-        // move slat to .env
-        String hashPassword =
-                BCrypt.hashpw(password, "f0b581ed73a0b46c54c19d4a553f9f661e3738fab7b28577cb101c2fe20262f9bcec5de7dd655ac5bba534639f95872d6d32cee0947a4d17ed7515bfaa5ddcb1");
-        userRequestDto.setPassword(hashPassword);
+        userRequestDto.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
+
         UserResponseDto response = new UserResponseDto();
-        return response.from(userRepository.save(userRequestDto.to(userRequestDto)));
+        try {
+            return response.from(authRepository.save(userRequestDto.to(userRequestDto)));
+        } catch (DuplicateKeyException ex) {
+            throw new IllegalArgumentException("Username already exists");
+        }
     }
 
     @Transactional(readOnly = true)
     public List<UserResponseDto> findAllUsers() {
-        return userRepository.findAll().stream().map(this::mapToResponseDto).toList();
+        return authRepository.findAll().stream().map(this::mapToResponseDto).toList();
     }
 
     @Transactional(readOnly = true)
     public UserResponseDto findUserById(String id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = authRepository.findById(id);
         if(user.isEmpty()) {
             throw new NoSuchElementException("User with id " + id + " not found.");
         }
@@ -47,7 +56,7 @@ public class UserService {
 
     @Transactional
     public UserResponseDto update(String id, UserRequestDto userRequestDto) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = authRepository.findById(id);
         if(user.isEmpty()) {
             throw new NoSuchElementException("User with id " + id + " not found to update");
         }
@@ -57,7 +66,7 @@ public class UserService {
             existingUser.setEmail(userRequestDto.getEmail());
             existingUser.setPassword(userRequestDto.getPassword());
 
-            userRepository.save(existingUser);
+            authRepository.save(existingUser);
             return mapToResponseDto(existingUser);
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage());
@@ -66,15 +75,23 @@ public class UserService {
 
     @Transactional
     public void delete(String id) {
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = authRepository.findById(id);
         if(user.isEmpty()) {
             throw new NoSuchElementException("User with id " + id + " not found to delete");
         }
         try {
-            userRepository.deleteById(id);
+            authRepository.deleteById(id);
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage());
         }
+    }
+
+    @Transactional
+    public AuthTokenResponseDto getJWTToken(AuthRequestDto authRequestDto) {
+        String jwtToken = jwtService.generateToken(authRequestDto.getName());
+        return AuthTokenResponseDto.builder()
+                .token(jwtToken)
+                .build();
     }
 
     private UserResponseDto mapToResponseDto(User user) {

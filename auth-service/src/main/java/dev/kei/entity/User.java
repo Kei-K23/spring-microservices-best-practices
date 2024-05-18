@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(value = "users")
@@ -16,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
     private String email;
     private String password;
@@ -25,7 +27,6 @@ public class User {
                .id(user.getId())
                .name(user.getName())
                .email(user.getEmail())
-               .password(user.getPassword())
                .build();
     }
 }

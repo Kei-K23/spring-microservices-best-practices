@@ -1,45 +1,72 @@
 package dev.kei.controller;
 
+import dev.kei.dto.AuthRequestDto;
+import dev.kei.dto.AuthTokenResponseDto;
 import dev.kei.dto.UserRequestDto;
 import dev.kei.dto.UserResponseDto;
-import dev.kei.service.UserService;
+import dev.kei.service.AuthService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/auth")
 @Slf4j
-public class UserController {
-    private final UserService userService;
+public class AuthController {
+    private final AuthService authService;
+    private final AuthenticationManager authenticationManager;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
+        this.authService = authService;
+        this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping
-    @RateLimiter(name = "user-service", fallbackMethod = "saveFallback")
+    @PostMapping("/register")
+    @RateLimiter(name = "auth-service", fallbackMethod = "saveFallback")
     public ResponseEntity<UserResponseDto> save(@RequestBody UserRequestDto userRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(userRequestDto));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(authService.save(userRequestDto));
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException(ex.getMessage());
+        }
+    }
+
+    @PostMapping("/token")
+    public ResponseEntity<AuthTokenResponseDto> getJWTToken(@RequestBody AuthRequestDto authRequestDto) {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getName(), authRequestDto.getPassword()));
+        if(authenticate.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.OK).body(authService.getJWTToken(authRequestDto));
+        } else {
+            throw new AuthenticationException("Invalid access") {
+                @Override
+                public String getMessage() {
+                    return super.getMessage();
+                }
+            };
+        }
     }
 
     @GetMapping
-    @RateLimiter(name = "user-service", fallbackMethod = "findAllUsersFallback")
+    @RateLimiter(name = "auth-service", fallbackMethod = "findAllUsersFallback")
     public ResponseEntity<List<UserResponseDto>> findAllProducts() {
-        return ResponseEntity.ok().body(userService.findAllUsers());
+        return ResponseEntity.ok().body(authService.findAllUsers());
     }
 
     @GetMapping("/{id}")
-    @RateLimiter(name = "user-service", fallbackMethod = "findUserByIdFallback")
+    @RateLimiter(name = "auth-service", fallbackMethod = "findUserByIdFallback")
     public ResponseEntity<UserResponseDto> findProductById(@PathVariable String id) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(userService.findUserById(id));
+            return ResponseEntity.status(HttpStatus.OK).body(authService.findUserById(id));
         }
         catch (Exception ex) {
             if(ex instanceof NoSuchElementException) {
@@ -51,10 +78,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @RateLimiter(name = "user-service", fallbackMethod = "updateFallback")
+    @RateLimiter(name = "auth-service", fallbackMethod = "updateFallback")
     public ResponseEntity<UserResponseDto> update(@PathVariable String id,@Valid @RequestBody UserRequestDto userRequestDto) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(userService.update(id, userRequestDto));
+            return ResponseEntity.status(HttpStatus.OK).body(authService.update(id, userRequestDto));
         } catch (Exception ex) {
             if(ex instanceof NoSuchElementException) {
                 throw new NoSuchElementException(ex.getMessage());
@@ -65,10 +92,10 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @RateLimiter(name = "user-service")
+    @RateLimiter(name = "auth-service")
     public void delete(@PathVariable String id) {
         try {
-            userService.delete(id);
+            authService.delete(id);
         } catch (Exception ex) {
             if(ex instanceof NoSuchElementException) {
                 throw new NoSuchElementException(ex.getMessage());
@@ -103,6 +130,8 @@ public class UserController {
         if (ex instanceof NoSuchElementException) {
             log.info("NotFoundException in fallback");
             throw new NoSuchElementException("User not found");
+        } else if (ex instanceof IllegalArgumentException) {
+            throw new IllegalArgumentException(ex.getMessage());
         } else {
             log.info("Rate limit exceeded");
             throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
