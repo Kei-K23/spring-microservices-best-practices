@@ -1,6 +1,7 @@
 package dev.kei.advice;
 
 import dev.kei.dto.CustomErrorResponseDto;
+import dev.kei.exception.InvalidAuthAccessTokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,16 @@ public class AuthServiceGlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(CustomErrorResponseDto.builder()
                 .status("USER-NOT-FOUND")
                 .code(404)
+                .message(ex.getMessage())
+                .build());
+    }
+
+    @ExceptionHandler(InvalidAuthAccessTokenException.class)
+    public ResponseEntity<CustomErrorResponseDto> handleAuthException(RuntimeException ex) {
+        log.info("ProductServiceGlobalExceptionHandler::handleAuthException exception caught: {} ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CustomErrorResponseDto.builder()
+                .status("UNAUTHORIZED-ACCESS-TOKEN")
+                .code(401)
                 .message(ex.getMessage())
                 .build());
     }

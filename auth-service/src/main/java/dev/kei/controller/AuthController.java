@@ -50,7 +50,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping(value = "/validate", params = "token")
+    @GetMapping(value = "/validate", params = "token")
     @RateLimiter(name = "auth-service", fallbackMethod = "validateFallback")
     public ResponseEntity<AuthTokenValidationResponseDto> validate(@RequestParam(name = "token") String token) {
         try {
@@ -60,6 +60,7 @@ public class AuthController {
                     .message("Valid token")
                     .build());
         } catch (Exception ex) {
+            System.out.println("ERROR HERE :::::" + ex.getMessage());
             throw new InvalidAuthAccessTokenException("Invalid access token");
         }
     }
