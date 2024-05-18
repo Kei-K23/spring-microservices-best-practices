@@ -5,34 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/AuthConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/CustomUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/CustomUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/AuthRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/AuthTokenResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/client/AuthServiceClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/config/RestClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/RouteValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/AuthTokenValidationResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/exception/InvalidAuthAccessTokenException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/exception/OtherServiceCallException.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/exception/OtherServiceCallException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/UserServiceApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/AuthServiceApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/advice/UserServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/config/ObservationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/config/ObservationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/UserRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/dto/UserResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/repository/AuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/dev/kei/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/dev/kei/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/dev/kei/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/AuthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +68,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/user-service/src/main/java/dev/kei",
+    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/api-gateway/src/main/java/dev/kei",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -98,15 +80,15 @@
       <recent name="dev.kei.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/user-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/user-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/order-service/src/main/java/dev/kei" />
-      <recent name="$PROJECT_DIR$/notification-server/src/main/java/dev/kei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.kei.dto" />
       <recent name="dev.kei.config" />
+      <recent name="dev.kei.dto" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ApiGatewayApp">

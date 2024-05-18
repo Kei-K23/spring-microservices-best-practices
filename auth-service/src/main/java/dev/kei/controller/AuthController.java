@@ -1,9 +1,7 @@
 package dev.kei.controller;
 
-import dev.kei.dto.AuthRequestDto;
-import dev.kei.dto.AuthTokenResponseDto;
-import dev.kei.dto.UserRequestDto;
-import dev.kei.dto.UserResponseDto;
+import dev.kei.dto.*;
+import dev.kei.exception.InvalidAuthAccessTokenException;
 import dev.kei.service.AuthService;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
@@ -42,17 +40,27 @@ public class AuthController {
     }
 
     @PostMapping("/token")
+    @RateLimiter(name = "auth-service", fallbackMethod = "getJWTTokenFallback")
     public ResponseEntity<AuthTokenResponseDto> getJWTToken(@RequestBody AuthRequestDto authRequestDto) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getName(), authRequestDto.getPassword()));
         if(authenticate.isAuthenticated()) {
             return ResponseEntity.status(HttpStatus.OK).body(authService.getJWTToken(authRequestDto));
         } else {
-            throw new AuthenticationException("Invalid access") {
-                @Override
-                public String getMessage() {
-                    return super.getMessage();
-                }
-            };
+            throw new InvalidAuthAccessTokenException("Invalid access");
+        }
+    }
+
+    @PostMapping(value = "/validate", params = "token")
+    @RateLimiter(name = "auth-service", fallbackMethod = "validateFallback")
+    public ResponseEntity<AuthTokenValidationResponseDto> validate(@RequestParam(name = "token") String token) {
+        try {
+            authService.validate(token);
+            return ResponseEntity.status(HttpStatus.OK).body(AuthTokenValidationResponseDto.builder()
+                    .code(HttpStatus.OK.value())
+                    .message("Valid token")
+                    .build());
+        } catch (Exception ex) {
+            throw new InvalidAuthAccessTokenException("Invalid access token");
         }
     }
 
@@ -111,6 +119,16 @@ public class AuthController {
         return null;
     }
 
+    public ResponseEntity<AuthTokenResponseDto> getJWTTokenFallback(AuthRequestDto authRequestDto, Exception ex) {
+        handleFallback(ex);
+        return null;
+    }
+
+    public ResponseEntity<AuthTokenValidationResponseDto> validateFallback(AuthRequestDto authRequestDto, Exception ex) {
+        handleFallback(ex);
+        return null;
+    }
+
     public ResponseEntity<List<UserResponseDto>> findAllUsersFallback(Exception ex) {
         handleFallback(ex);
         return null;
@@ -132,6 +150,8 @@ public class AuthController {
             throw new NoSuchElementException("User not found");
         } else if (ex instanceof IllegalArgumentException) {
             throw new IllegalArgumentException(ex.getMessage());
+        } else if (ex instanceof InvalidAuthAccessTokenException) {
+            throw new InvalidAuthAccessTokenException(ex.getMessage());
         } else {
             log.info("Rate limit exceeded");
             throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");

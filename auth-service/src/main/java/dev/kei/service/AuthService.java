@@ -94,6 +94,10 @@ public class AuthService {
                 .build();
     }
 
+    public void validate(String token) {
+        jwtService.validateToken(token);
+    }
+
     private UserResponseDto mapToResponseDto(User user) {
         return user.to(user);
     }
