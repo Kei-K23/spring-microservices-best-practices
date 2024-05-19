@@ -15,4 +15,10 @@ public class RestClientConfig {
     public RestTemplate inventoryRestTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.rootUri("http://inventory-service/api/v1").build();
     }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate backupRestTemplate(RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.rootUri("http://backup-service/api/v1").build();
+    }
 }
