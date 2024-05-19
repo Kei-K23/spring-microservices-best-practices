@@ -5,27 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupInventoryRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupInventoryResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupProductRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupProductResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/BackupInventoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/dto/BackupInventoryResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/InventoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupInventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupInventoryServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupProductServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/client/InventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/KafkaTopicConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/RestClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/config/RestClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/service/OrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +71,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/product-service/src/main/java/dev/kei/dto",
+    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/backup-service/src/main/java/dev/kei/entity",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -93,11 +83,11 @@
       <recent name="dev.kei.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity" />
       <recent name="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/exception" />
-      <recent name="$PROJECT_DIR$/backup-service/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="dev.kei.dto" />
@@ -188,10 +178,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OrderServiceApp" />
         <item itemvalue="Application.ProductServiceApp" />
         <item itemvalue="Application.BackupServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
-        <item itemvalue="Application.OrderServiceApp" />
         <item itemvalue="Application.ServiceDiscoveryApp" />
       </list>
     </recent_temporary>

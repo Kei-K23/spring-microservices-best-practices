@@ -55,12 +55,12 @@ public class InventoryService {
     }
 
     @Transactional(readOnly = true)
-    public List<InventoryResponseDto> checkIsStockEnough(List<String> productIdList) {
+    public List<BackupInventoryResponseDto> checkIsStockEnough(List<String> productIdList) {
         log.info("Checking inventory");
         return inventoryRepository.findByProductIdIn(productIdList).stream()
                 .map(inventory -> {
-                    InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
-                    return inventoryResponseDto.from(inventory);
+                    BackupInventoryResponseDto backupInventoryResponseDto = new BackupInventoryResponseDto();
+                    return backupInventoryResponseDto.from(inventory);
                 }).filter(inventoryResponseDto -> inventoryResponseDto.getStock() > 0).toList();
     }
 

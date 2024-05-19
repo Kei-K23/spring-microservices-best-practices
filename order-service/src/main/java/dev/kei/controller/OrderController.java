@@ -99,9 +99,11 @@ public class OrderController {
         return null;
     }
     public ResponseEntity<OrderResponseDto> saveCircuitBreakerFallback(OrderRequestDto orderRequestDto, Exception ex) {
-        // todo add backup service here
-        System.out.println("HERE CAUSE BY CIRCUIT BREAKER");
-        handleFallback(ex);
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(orderService.saveWithBackUpService(orderRequestDto));
+        } catch (Exception e) {
+            handleFallback(e);
+        }
         return null;
     }
 

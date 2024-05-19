@@ -2,10 +2,7 @@ package dev.kei.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.kei.client.InventoryServiceClient;
-import dev.kei.dto.InventoryResponseDto;
-import dev.kei.dto.OrderRequestDto;
-import dev.kei.dto.OrderResponseDto;
-import dev.kei.dto.OrderStatusUpdateRequestDto;
+import dev.kei.dto.*;
 import dev.kei.entity.Order;
 import dev.kei.entity.OrderItem;
 import dev.kei.entity.OrderStatus;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -51,6 +49,44 @@ public class OrderService {
             if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
                 throw new OtherServiceCallException("Failed to place order! No enough stock.");
             }
+
+            // sent to notification service
+            kafkaSender.sendMessage( "Your order is in pending state! We will be confirm your order as soon as possible",
+                    "notification-service");
+            OrderResponseDto orderResponseDto = new OrderResponseDto();
+            return orderResponseDto.from(order);
+        } catch (Exception ex) {
+            if (ex instanceof OtherServiceCallException) {
+                throw new OtherServiceCallException("Failed to place order! No enough stock.");
+            } else {
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
+    }
+
+    @Transactional
+    public OrderResponseDto saveWithBackUpService(OrderRequestDto orderRequestDto) {
+        try {
+            Order order = orderRequestDto.to(orderRequestDto);
+            order.setOrderCode(UUID.randomUUID().toString());
+            orderRepository.save(order);
+
+            List<OrderItem> orderItems = order.getOrderItems();
+            List<String> productIdList = orderItems.stream().map(OrderItem::getProductId).toList();
+
+            // call inventory service to check products are in stock
+            List<BackupInventoryResponseDto> backupInventoryResponseDtos = inventoryServiceClient.checkBackupInventoryForStockIsEnough(productIdList);
+            List<InventoryResponseDto> inventoryResponseDtos = backupInventoryResponseDtos.stream().map(backupInventoryResponseDto -> {
+                InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
+                inventoryResponseDto.setId(backupInventoryResponseDto.getInventoryId());
+                inventoryResponseDto.setStock(backupInventoryResponseDto.getStock());
+                inventoryResponseDto.setProductId(backupInventoryResponseDto.getProductId());
+                return inventoryResponseDto;
+            }).toList();
+            if (!inventoryResponseDtos.stream().allMatch(inventoryResponseDto -> isStockEnough(orderItems, inventoryResponseDto))) {
+                throw new OtherServiceCallException("Failed to place order! No enough stock.");
+            }
+
             // sent to notification service
             kafkaSender.sendMessage( "Your order is in pending state! We will be confirm your order as soon as possible",
                     "notification-service");
@@ -85,20 +121,35 @@ public class OrderService {
 
     @Transactional
     public OrderResponseDto update(Long id, OrderRequestDto orderRequestDto) {
-        // TODO handle not found order
-        Order order = orderRepository.findById(id).get();
-        order.setOrderItems(orderRequestDto.getOrderItems());
-        order.setOrderStatus(orderRequestDto.getOrderStatus());
-        orderRepository.save(order);
+        Optional<Order> orderOptional = orderRepository.findById(id);
 
-        OrderResponseDto orderResponseDto = new OrderResponseDto();
-        return orderResponseDto.from(order);
+        if(orderOptional.isEmpty()) {
+            throw new NoSuchElementException("Order not found");
+        }
+
+        try {
+            Order order = orderOptional.get();
+            order.setOrderItems(orderRequestDto.getOrderItems());
+            order.setOrderStatus(orderRequestDto.getOrderStatus());
+            orderRepository.save(order);
+
+            OrderResponseDto orderResponseDto = new OrderResponseDto();
+            return orderResponseDto.from(order);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
     }
 
     @Transactional
     public OrderResponseDto orderStatusUpdate(Long id, OrderStatusUpdateRequestDto orderStatusUpdateRequestDto) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+
+        if(optionalOrder.isEmpty()) {
+            throw new NoSuchElementException("Order not found");
+        }
+
         try {
-            Order order = orderRepository.findById(id).get();
+            Order order = optionalOrder.get();
             order.setOrderStatus(orderStatusUpdateRequestDto.getOrderStatus());
             orderRepository.save(order);
 
@@ -122,7 +173,11 @@ public class OrderService {
 
     @Transactional
     public void delete(Long id) {
-        orderRepository.deleteById(id);
+        try {
+            orderRepository.deleteById(id);
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to delete order");
+        }
     }
 
     private OrderResponseDto mapToOrderResponse(Order order) {

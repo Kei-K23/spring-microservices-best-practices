@@ -68,7 +68,7 @@ public class InventoryController {
 
     @GetMapping(value = "/check", params = "productIdList")
     @RateLimiter(name = "inventory-service", fallbackMethod = "checkIsStockEnoughFallback")
-    public ResponseEntity<List<InventoryResponseDto>> checkIsStockEnough(@RequestParam(name = "productIdList") List<String> productIdList) {
+    public ResponseEntity<List<BackupInventoryResponseDto>> checkIsStockEnough(@RequestParam(name = "productIdList") List<String> productIdList) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(inventoryService.checkIsStockEnough(productIdList));
         } catch (Exception ex) {
@@ -112,7 +112,7 @@ public class InventoryController {
         return null;
     }
 
-    public ResponseEntity<List<InventoryResponseDto>> checkIsStockEnoughFallback(List<String> productIdList, Exception ex) {
+    public ResponseEntity<List<BackupInventoryResponseDto>> checkIsStockEnoughFallback(List<String> productIdList, Exception ex) {
         handleFallback(ex);
         return null;
     }
