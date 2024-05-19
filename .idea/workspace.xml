@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupProductServiceClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/ProductRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/ProductResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupInventoryServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +65,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/backup-service/src/main/java/dev/kei",
+    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/backup-service/src/main/java/dev/kei/dto",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -74,18 +77,18 @@
       <recent name="dev.kei.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/exception" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei" />
-      <recent name="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.kei.client" />
-      <recent name="dev.kei.config" />
       <recent name="dev.kei.controller" />
-      <recent name="dev.kei.advice" />
       <recent name="dev.kei.service" />
+      <recent name="dev.kei.entity" />
+      <recent name="dev.kei.repository" />
+      <recent name="dev.kei.client" />
     </key>
   </component>
   <component name="RunManager" selected="Application.OrderServiceApp">
