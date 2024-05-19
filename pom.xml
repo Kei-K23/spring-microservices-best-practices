@@ -24,6 +24,7 @@
     <module>api-gateway</module>
     <module>notification-server</module>
     <module>auth-service</module>
+    <module>backup-service</module>
   </modules>
 
   <properties>
