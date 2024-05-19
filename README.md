@@ -22,6 +22,15 @@ When I started learn with Spring, Spring Boot and Microservices, I cannot find a
 - Testcontainers
 - MailTrap
 
+## Features
+
+- Microservices
+- JWT authentication
+- Monitoring
+- Logging
+- Messaging
+- Backup Plan
+
 ## High-level System design diagram
 
-![system design diagram](assets/system-design-diagram)
+![system design diagram](assets/system-design-diagram.png)
