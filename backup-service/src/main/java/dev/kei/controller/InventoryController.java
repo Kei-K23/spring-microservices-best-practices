@@ -1,7 +1,6 @@
 package dev.kei.controller;
 
-import dev.kei.dto.InventoryRequestDto;
-import dev.kei.dto.InventoryResponseDto;
+import dev.kei.dto.*;
 import dev.kei.exception.ExceedRateLimitException;
 import dev.kei.service.InventoryService;
 import io.github.resilience4j.ratelimiter.RequestNotPermitted;
@@ -27,9 +26,9 @@ public class InventoryController {
 
     @PostMapping
     @RateLimiter(name = "inventory-service", fallbackMethod = "saveFallback")
-    public ResponseEntity<InventoryResponseDto> save(@Valid @RequestBody InventoryRequestDto inventoryRequestDto) {
+    public ResponseEntity<BackupInventoryResponseDto> save(@Valid @RequestBody BackupInventoryRequestDto backupInventoryRequestDto) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(inventoryService.save(inventoryRequestDto));
+            return ResponseEntity.status(HttpStatus.CREATED).body(inventoryService.save(backupInventoryRequestDto));
         } catch (Exception ex) {
             if(ex instanceof NoSuchElementException) {
                 throw new NoSuchElementException(ex.getMessage());
@@ -103,7 +102,7 @@ public class InventoryController {
     }
 
     // Fallback methods
-    public ResponseEntity<InventoryResponseDto> saveFallback(InventoryRequestDto inventoryRequestDto, Exception ex) {
+    public ResponseEntity<BackupInventoryResponseDto> saveFallback(BackupInventoryRequestDto backupInventoryRequestDto, Exception ex) {
         handleFallback(ex);
         return null;
     }

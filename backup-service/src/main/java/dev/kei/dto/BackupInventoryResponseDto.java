@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class InventoryResponseDto {
+public class BackupInventoryResponseDto {
     private String id;
     private Long inventoryId;
     private String productId;
     private Integer stock;
 
-    public InventoryResponseDto from(Inventory inventory) {
-        return InventoryResponseDto.builder()
+    public BackupInventoryResponseDto from(Inventory inventory) {
+        return BackupInventoryResponseDto.builder()
                 .id(inventory.getId())
                 .inventoryId(inventory.getInventoryId())
                 .productId(inventory.getProductId())

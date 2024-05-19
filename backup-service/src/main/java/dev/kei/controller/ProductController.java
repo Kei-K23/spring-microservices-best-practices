@@ -1,5 +1,7 @@
 package dev.kei.controller;
 
+import dev.kei.dto.BackupProductRequestDto;
+import dev.kei.dto.BackupProductResponseDto;
 import dev.kei.dto.ProductRequestDto;
 import dev.kei.dto.ProductResponseDto;
 import dev.kei.exception.ExceedRateLimitException;
@@ -27,8 +29,8 @@ public class ProductController {
 
     @PostMapping
     @RateLimiter(name = "product-service", fallbackMethod = "saveFallback")
-    public ResponseEntity<ProductResponseDto> save(@Valid @RequestBody ProductRequestDto productRequestDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(productRequestDto));
+    public ResponseEntity<BackupProductResponseDto> save(@Valid @RequestBody BackupProductRequestDto backupProductRequestDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(backupProductRequestDto));
     }
 
     @GetMapping
@@ -69,7 +71,7 @@ public class ProductController {
     }
 
     // Fallback methods
-    public ResponseEntity<ProductResponseDto> saveFallback(ProductRequestDto productRequestDto, Exception ex) {
+    public ResponseEntity<BackupProductResponseDto> saveFallback(BackupProductRequestDto backupProductRequestDto, Exception ex) {
         handleFallback(ex);
         return null;
     }

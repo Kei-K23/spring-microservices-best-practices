@@ -1,8 +1,6 @@
 package dev.kei.service;
 
-import dev.kei.dto.InventoryRequestDto;
-import dev.kei.dto.ProductRequestDto;
-import dev.kei.dto.ProductResponseDto;
+import dev.kei.dto.*;
 import dev.kei.entity.Product;
 import dev.kei.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -38,17 +36,18 @@ public class ProductService {
 
     // create new product
     @Transactional
-    public ProductResponseDto save(ProductRequestDto productRequestDto) {
+    public BackupProductResponseDto save(BackupProductRequestDto backupProductRequestDto) {
         Product product = Product.builder()
-                .name(productRequestDto.getName())
-                .description(productRequestDto.getDescription())
-                .price(productRequestDto.getPrice())
-                .stock(productRequestDto.getStock())
+                .productId(backupProductRequestDto.getProductId())
+                .name(backupProductRequestDto.getName())
+                .description(backupProductRequestDto.getDescription())
+                .price(backupProductRequestDto.getPrice())
+                .stock(backupProductRequestDto.getStock())
                 .build();
         productRepository.save(product);
 
-        ProductResponseDto productResponseDto = new ProductResponseDto();
-        return productResponseDto.from(product);
+        BackupProductResponseDto backupProductResponseDto = new BackupProductResponseDto();
+        return backupProductResponseDto.from(product);
     }
 
     @Transactional

@@ -19,7 +19,7 @@ public class InventoryServiceClient {
         this.inventoryRestTemplate = inventoryRestTemplate;
     }
 
-    public void createInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {
+    public Long createInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {
         log.info("Calling inventory service to create inventory item");
 
         HttpHeaders headers = new HttpHeaders();
@@ -31,6 +31,7 @@ public class InventoryServiceClient {
                 requestEntity,
                 InventoryResponseDto.class).getBody();
         log.info("Inventory service response: {}", response);
+        return response.getId();
     }
 
     public void updateInventoryItemFromProduct(InventoryRequestDto inventoryRequestDto) {

@@ -1,5 +1,7 @@
 package dev.kei.service;
 
+import dev.kei.dto.BackupInventoryRequestDto;
+import dev.kei.dto.BackupInventoryResponseDto;
 import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.InventoryResponseDto;
 import dev.kei.entity.Inventory;
@@ -21,12 +23,12 @@ public class InventoryService {
     }
 
     // create inventory product
-    public InventoryResponseDto save(InventoryRequestDto inventoryRequestDto) {
-        Inventory inventory = inventoryRequestDto.to(inventoryRequestDto);
+    public BackupInventoryResponseDto save(BackupInventoryRequestDto backupInventoryRequestDto) {
+        Inventory inventory = backupInventoryRequestDto.to(backupInventoryRequestDto);
         inventoryRepository.save(inventory);
 
-        InventoryResponseDto inventoryResponseDto = new InventoryResponseDto();
-        return inventoryResponseDto.from(inventory);
+        BackupInventoryResponseDto backupInventoryResponseDto = new BackupInventoryResponseDto();
+        return backupInventoryResponseDto.from(inventory);
     }
 
     @Transactional(readOnly = true)

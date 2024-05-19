@@ -3,9 +3,7 @@ package dev.kei.service;
 import dev.kei.client.BackupInventoryServiceClient;
 import dev.kei.client.BackupProductServiceClient;
 import dev.kei.client.InventoryServiceClient;
-import dev.kei.dto.InventoryRequestDto;
-import dev.kei.dto.ProductRequestDto;
-import dev.kei.dto.ProductResponseDto;
+import dev.kei.dto.*;
 import dev.kei.entity.Product;
 import dev.kei.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -57,7 +55,7 @@ public class ProductService {
                 .price(productRequestDto.getPrice())
                 .stock(productRequestDto.getStock())
                 .build();
-        productRepository.save(product);
+        Product createdProduct = productRepository.save(product);
 
         try {
             // internal communication with inventory service to create inventory item
@@ -65,10 +63,27 @@ public class ProductService {
                     .productId(product.getId())
                     .stock(product.getStock())
                     .build();
-            inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
-            backupInventoryServiceClient.createInventoryItemForBackupService(inventoryRequestDto);
-            backupProductServiceClient.createProductForBackupService(productRequestDto);
+
+
+            Long inventoryId =inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
+            BackupInventoryRequestDto backupInventoryRequestDto = BackupInventoryRequestDto.builder()
+                    .inventoryId(inventoryId)
+                    .productId(product.getId())
+                    .stock(product.getStock())
+                    .build();
+
+            BackupProductRequestDto backupProductRequestDto = BackupProductRequestDto.builder()
+                    .productId(createdProduct.getId())
+                    .name(product.getName())
+                    .description(product.getDescription())
+                    .price(product.getPrice())
+                    .stock(product.getStock())
+                    .build();
+
+            backupInventoryServiceClient.createInventoryItemForBackupService(backupInventoryRequestDto);
+            backupProductServiceClient.createProductForBackupService(backupProductRequestDto);
         } catch (Exception ex) {
+            System.out.println("ERROR::::" + ex);
             // If there is an exception, rollback the transaction
             throw new RuntimeException("Failed to create inventory item, rolling back transaction", ex);
         }

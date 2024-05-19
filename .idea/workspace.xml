@@ -5,13 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/ProductRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/ProductResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupInventoryRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupInventoryResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupProductRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/BackupProductResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupInventoryResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto/BackupProductResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto/InventoryResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/InventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupInventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupInventoryServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/BackupProductServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/client/InventoryServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +60,7 @@
     "Application.ApiGatewayApp.executor": "Run",
     "Application.App.executor": "Run",
     "Application.AuthServiceApp.executor": "Run",
+    "Application.BackupServiceApp.executor": "Run",
     "Application.InventoryServiceApp.executor": "Run",
     "Application.NotificationServiceApp.executor": "Run",
     "Application.OrderServiceApp.executor": "Run",
@@ -54,6 +69,7 @@
     "Application.UserServiceApp.executor": "Run",
     "Docker.docker-compose.yml.broker: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.grafana: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.loki: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.mongo: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.mysql: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.prometheus: Compose Deployment.executor": "Run",
@@ -65,7 +81,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/backup-service/src/main/java/dev/kei/dto",
+    "last_opened_file_path": "/Users/arkarmin/Desktop/projects/java/khine-online-convenience-store-microservices/product-service/src/main/java/dev/kei/dto",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -77,24 +93,24 @@
       <recent name="dev.kei.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/product-service/src/main/java/dev/kei/dto" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/dto" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/java/dev/kei/exception" />
       <recent name="$PROJECT_DIR$/backup-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.kei.dto" />
       <recent name="dev.kei.controller" />
       <recent name="dev.kei.service" />
       <recent name="dev.kei.entity" />
       <recent name="dev.kei.repository" />
-      <recent name="dev.kei.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OrderServiceApp">
-    <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
-      <module name="inventory-service" />
+  <component name="RunManager" selected="Application.BackupServiceApp">
+    <configuration name="BackupServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.BackupServiceApp" />
+      <module name="backup-service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.kei.*" />
@@ -105,9 +121,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificationServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.NotificationServiceApp" />
-      <module name="notification-server" />
+    <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
+      <module name="inventory-service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.kei.*" />
@@ -164,19 +180,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.BackupServiceApp" />
       <item itemvalue="Application.ProductServiceApp" />
       <item itemvalue="Application.ServiceDiscoveryApp" />
-      <item itemvalue="Application.NotificationServiceApp" />
       <item itemvalue="Application.InventoryServiceApp" />
       <item itemvalue="Application.OrderServiceApp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProductServiceApp" />
+        <item itemvalue="Application.BackupServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Application.OrderServiceApp" />
-        <item itemvalue="Application.ProductServiceApp" />
         <item itemvalue="Application.ServiceDiscoveryApp" />
-        <item itemvalue="Application.NotificationServiceApp" />
       </list>
     </recent_temporary>
   </component>

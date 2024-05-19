@@ -1,7 +1,8 @@
 package dev.kei.client;
 
+import dev.kei.dto.BackupInventoryRequestDto;
+import dev.kei.dto.BackupInventoryResponseDto;
 import dev.kei.dto.InventoryRequestDto;
-import dev.kei.dto.InventoryResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,17 +19,17 @@ public class BackupInventoryServiceClient {
         this.backupRestTemplate = backupRestTemplate;
     }
 
-    public void createInventoryItemForBackupService(InventoryRequestDto inventoryRequestDto) {
+    public void createInventoryItemForBackupService(BackupInventoryRequestDto backupInventoryRequestDto) {
         log.info("Calling back up service to create inventory item");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
-        HttpEntity<InventoryRequestDto> requestEntity = new HttpEntity<>(inventoryRequestDto, headers);
+        HttpEntity<BackupInventoryRequestDto> requestEntity = new HttpEntity<>(backupInventoryRequestDto, headers);
         var response = backupRestTemplate.exchange("/backup/inventory",
                 HttpMethod.POST,
                 requestEntity,
-                InventoryResponseDto.class).getBody();
+                BackupInventoryResponseDto.class).getBody();
         log.info("Backup Inventory service response: {}", response);
     }
 
@@ -42,7 +43,7 @@ public class BackupInventoryServiceClient {
         var response = backupRestTemplate.exchange("/backup/inventory?productId=" + inventoryRequestDto.getProductId(),
                 HttpMethod.PUT,
                 requestEntity,
-                InventoryResponseDto.class).getBody();
+                BackupInventoryResponseDto.class).getBody();
         log.info("Backup Inventory service response: {}", response);
     }
 
