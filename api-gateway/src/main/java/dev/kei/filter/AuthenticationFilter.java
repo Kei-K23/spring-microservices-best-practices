@@ -3,8 +3,10 @@ package dev.kei.filter;
 import dev.kei.client.AuthServiceClient;
 import dev.kei.exception.InvalidAuthAccessTokenException;
 import dev.kei.exception.MissingAuthHeaderException;
+import dev.kei.exception.ServiceUnavailableException;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -44,6 +46,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                             return chain.filter(exchange);
                         })
                         .onErrorResume(e -> {
+                            if(e instanceof NotFoundException) {
+                                return Mono.error(new ServiceUnavailableException(e.getMessage()));
+                            }
                             return Mono.error(new InvalidAuthAccessTokenException(e.getMessage()));
                         });
             }

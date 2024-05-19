@@ -44,11 +44,7 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.OK).body(productService.findProductById(id).get());
         }
         catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -58,11 +54,7 @@ public class ProductController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.update(id, productRequestDto));
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -72,11 +64,7 @@ public class ProductController {
         try {
             productService.delete(id);
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 

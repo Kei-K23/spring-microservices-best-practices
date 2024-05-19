@@ -1,8 +1,10 @@
 package dev.kei.controller;
 
 import dev.kei.dto.*;
+import dev.kei.exception.ExceedRateLimitException;
 import dev.kei.exception.InvalidAuthAccessTokenException;
 import dev.kei.service.AuthService;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -148,9 +150,9 @@ public class AuthController {
         if (ex instanceof NoSuchElementException) {
             log.info("NotFoundException in fallback");
             throw new NoSuchElementException("User not found");
-        } else if (ex instanceof IllegalArgumentException) {
-            log.info("IllegalArgumentException in fallback");
-            throw new IllegalArgumentException(ex.getMessage());
+        } else if(ex instanceof RequestNotPermitted) {
+            log.info("RequestNotPermitted in fallback");
+            throw new ExceedRateLimitException("You have reached your rate limit. Please try again in 30 seconds.");
         } else if (ex instanceof InvalidAuthAccessTokenException) {
             log.info("InvalidAuthAccessTokenException in fallback");
             throw new InvalidAuthAccessTokenException("Invalid access token");

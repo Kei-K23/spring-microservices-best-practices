@@ -35,13 +35,7 @@ public class OrderController {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(orderService.save(orderRequestDto));
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else if (ex instanceof OtherServiceCallException) {
-                throw new OtherServiceCallException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -58,11 +52,7 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderById(id));
         }
         catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -72,11 +62,7 @@ public class OrderController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrdersByCustomerId(customerId));
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -86,11 +72,7 @@ public class OrderController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.update(id, orderRequestDto));
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -100,11 +82,7 @@ public class OrderController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(orderService.orderStatusUpdate(id, orderStatusUpdateRequestDto));
         } catch (Exception ex) {
-            if(ex instanceof NoSuchElementException) {
-                throw new NoSuchElementException(ex.getMessage());
-            } else {
-                throw new RuntimeException(ex.getMessage());
-            }
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
