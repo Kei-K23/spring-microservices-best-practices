@@ -43,8 +43,6 @@ public class InventoryController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(inventoryService.findAllInventoryItems());
         } catch (Exception ex) {
-            System.out.println(ex);
-            System.out.println("ERRER :::" + ex.getMessage());
             if(ex instanceof NoSuchElementException) {
                 throw new NoSuchElementException(ex.getMessage());
             } else {

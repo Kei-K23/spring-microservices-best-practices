@@ -2,6 +2,7 @@ package dev.kei.filter;
 
 import dev.kei.client.AuthServiceClient;
 import dev.kei.exception.InvalidAuthAccessTokenException;
+import dev.kei.exception.MissingAuthHeaderException;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             if (validator.isSecured.test(exchange.getRequest())) {
                 // Header contains token or not
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    return Mono.error(new RuntimeException("Missing authorization header"));
+                    return Mono.error(new MissingAuthHeaderException("Missing authorization header"));
                 }
 
                 String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);

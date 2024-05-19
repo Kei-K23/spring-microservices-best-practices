@@ -1,6 +1,7 @@
 package dev.kei.advice;
 
 import dev.kei.dto.CustomErrorResponseDto;
+import dev.kei.exception.ExceedRateLimitException;
 import dev.kei.exception.OtherServiceCallException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,22 @@ import java.util.NoSuchElementException;
 public class OrderServiceGlobalExceptionHandler {
 
     // handle too many requests exception
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<CustomErrorResponseDto> handleTooManyRequestException(RuntimeException ex) {
+    @ExceptionHandler(ExceedRateLimitException.class)
+    public ResponseEntity<CustomErrorResponseDto> handleTooManyRequestException(ExceedRateLimitException ex) {
         log.info("OrderServiceGlobalExceptionHandler::handleTooManyRequestException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(CustomErrorResponseDto.builder()
                 .status("TOO-MANY-REQUESTS")
                 .code(429)
+                .message(ex.getMessage())
+                .build());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<CustomErrorResponseDto> handleInternalServiceException(RuntimeException ex) {
+        log.info("OrderServiceGlobalExceptionHandler::handleInternalServiceException exception caught: {} ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CustomErrorResponseDto.builder()
+                .status("INTERNAL-SERVER-ERROR_CALL")
+                .code(500)
                 .message(ex.getMessage())
                 .build());
     }
@@ -36,7 +47,7 @@ public class OrderServiceGlobalExceptionHandler {
     }
 
     @ExceptionHandler(OtherServiceCallException.class)
-    public ResponseEntity<CustomErrorResponseDto> handleOtherServiceCallException(RuntimeException ex) {
+    public ResponseEntity<CustomErrorResponseDto> handleOtherServiceCallException(OtherServiceCallException ex) {
         log.info("OrderServiceGlobalExceptionHandler::handleOtherServiceCallException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CustomErrorResponseDto.builder()
                 .status("ORDER-CANNOT-PLACE")

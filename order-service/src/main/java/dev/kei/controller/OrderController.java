@@ -3,8 +3,11 @@ package dev.kei.controller;
 import dev.kei.dto.OrderRequestDto;
 import dev.kei.dto.OrderResponseDto;
 import dev.kei.dto.OrderStatusUpdateRequestDto;
+import dev.kei.exception.ExceedRateLimitException;
 import dev.kei.exception.OtherServiceCallException;
 import dev.kei.service.OrderService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,7 @@ public class OrderController {
     }
 
     @PostMapping
+    @CircuitBreaker(name = "order-service", fallbackMethod = "saveCircuitBreakerFallback")
     @RateLimiter(name = "order-service", fallbackMethod = "saveFallback")
     public ResponseEntity<OrderResponseDto> save(@Valid @RequestBody OrderRequestDto orderRequestDto) {
         try {
@@ -116,6 +120,12 @@ public class OrderController {
         handleFallback(ex);
         return null;
     }
+    public ResponseEntity<OrderResponseDto> saveCircuitBreakerFallback(OrderRequestDto orderRequestDto, Exception ex) {
+        // todo add backup service here
+        System.out.println("HERE CAUSE BY CIRCUIT BREAKER");
+        handleFallback(ex);
+        return null;
+    }
 
     public ResponseEntity<List<OrderResponseDto>> findAllOrdersFallback(Exception ex) {
         handleFallback(ex);
@@ -143,9 +153,12 @@ public class OrderController {
         } else if(ex instanceof OtherServiceCallException) {
             log.info("OtherServiceCallException in fallback");
             throw new OtherServiceCallException(ex.getMessage());
-        } else {
+        } else if(ex instanceof RequestNotPermitted) {
             log.info("Rate limit exceeded");
-            throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
+            throw new ExceedRateLimitException("You have reached your rate limit. Please try again in 30 seconds.");
+        } else {
+            log.info("Runtime exception");
+            throw new RuntimeException(ex.getMessage());
         }
     }
 }

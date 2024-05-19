@@ -1,7 +1,7 @@
 package dev.kei.exception;
 
-public class MissingAuthHeaderException extends RuntimeException{
-    public MissingAuthHeaderException(String message) {
+public class ExceedRateLimitException extends RuntimeException{
+    public ExceedRateLimitException(String message) {
         super(message);
     }
 

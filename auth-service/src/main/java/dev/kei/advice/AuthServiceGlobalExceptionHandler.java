@@ -38,9 +38,9 @@ public class AuthServiceGlobalExceptionHandler {
     @ExceptionHandler(InvalidAuthAccessTokenException.class)
     public ResponseEntity<CustomErrorResponseDto> handleAuthException(RuntimeException ex) {
         log.info("AuthServiceGlobalExceptionHandler::handleAuthException exception caught: {} ", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CustomErrorResponseDto.builder()
+        return ResponseEntity.status(403).body(CustomErrorResponseDto.builder()
                 .status("UNAUTHORIZED-ACCESS-TOKEN")
-                .code(401)
+                .code(403)
                 .message(ex.getMessage())
                 .build());
     }

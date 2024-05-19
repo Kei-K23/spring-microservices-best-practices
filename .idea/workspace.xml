@@ -5,18 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/advice/ApiGatewayGlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/exception/InvalidAuthAccessTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/exception/InvalidAuthAccessTokenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/exception/ExceedRateLimitException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/exception/ExceedRateLimitException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/exception/ExceedRateLimitException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/advice/ApiGatewayGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/advice/ApiGatewayGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/exception/MissingAuthHeaderException.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/exception/MissingAuthHeaderException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/AuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/advice/InventoryServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/advice/InventoryServiceGlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/advice/OrderServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/advice/OrderServiceGlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/advice/ProductServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/advice/ProductServiceGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/dev/kei/controller/ProductController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +91,7 @@
       <recent name="$PROJECT_DIR$/order-service/src/main/java/dev/kei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.kei.exception" />
       <recent name="dev.kei.dto" />
       <recent name="dev.kei.config" />
     </key>
@@ -175,8 +178,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ProductServiceApp" />
-        <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Application.OrderServiceApp" />
+        <item itemvalue="Application.InventoryServiceApp" />
         <item itemvalue="Application.NotificationServiceApp" />
         <item itemvalue="Application.ServiceDiscoveryApp" />
       </list>

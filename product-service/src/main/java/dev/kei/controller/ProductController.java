@@ -2,7 +2,9 @@ package dev.kei.controller;
 
 import dev.kei.dto.ProductRequestDto;
 import dev.kei.dto.ProductResponseDto;
+import dev.kei.exception.ExceedRateLimitException;
 import dev.kei.service.ProductService;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -103,9 +105,11 @@ public class ProductController {
         if (ex instanceof NoSuchElementException) {
             log.info("NotFoundException in fallback");
             throw new NoSuchElementException("Product not found");
+        } else if(ex instanceof RequestNotPermitted) {
+            log.info("RequestNotPermitted in fallback");
+            throw new ExceedRateLimitException("You have reached your rate limit. Please try again in 30 seconds.");
         } else {
-            log.info("Rate limit exceeded");
-            throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
+            throw new RuntimeException(ex.getMessage());
         }
     }
 }
