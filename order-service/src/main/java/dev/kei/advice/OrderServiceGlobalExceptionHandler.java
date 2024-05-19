@@ -17,7 +17,7 @@ public class OrderServiceGlobalExceptionHandler {
     // handle too many requests exception
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<CustomErrorResponseDto> handleTooManyRequestException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleTooManyRequestException exception caught: {} ", ex.getMessage());
+        log.info("OrderServiceGlobalExceptionHandler::handleTooManyRequestException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(CustomErrorResponseDto.builder()
                 .status("TOO-MANY-REQUESTS")
                 .code(429)
@@ -27,7 +27,7 @@ public class OrderServiceGlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<CustomErrorResponseDto> handleNotFoundException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleNotFoundException exception caught: {} ", ex.getMessage());
+        log.info("OrderServiceGlobalExceptionHandler::handleNotFoundException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(CustomErrorResponseDto.builder()
                 .status("ORDER-NOT-FOUND")
                 .code(404)
@@ -37,7 +37,7 @@ public class OrderServiceGlobalExceptionHandler {
 
     @ExceptionHandler(OtherServiceCallException.class)
     public ResponseEntity<CustomErrorResponseDto> handleOtherServiceCallException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleOtherServiceCallException exception caught: {} ", ex.getMessage());
+        log.info("OrderServiceGlobalExceptionHandler::handleOtherServiceCallException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(CustomErrorResponseDto.builder()
                 .status("ORDER-CANNOT-PLACE")
                 .code(500)

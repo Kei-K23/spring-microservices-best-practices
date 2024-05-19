@@ -17,7 +17,7 @@ public class AuthServiceGlobalExceptionHandler {
     // handle too many requests exception
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<CustomErrorResponseDto> handleTooManyRequestException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleTooManyRequestException exception caught: {} ", ex.getMessage());
+        log.info("AuthServiceGlobalExceptionHandler::handleTooManyRequestException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(CustomErrorResponseDto.builder()
                 .status("TOO-MANY-REQUESTS")
                 .code(429)
@@ -27,7 +27,7 @@ public class AuthServiceGlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<CustomErrorResponseDto> handleNotFoundException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleNotFoundException exception caught: {} ", ex.getMessage());
+        log.info("AuthServiceGlobalExceptionHandler::handleNotFoundException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(CustomErrorResponseDto.builder()
                 .status("USER-NOT-FOUND")
                 .code(404)
@@ -37,7 +37,7 @@ public class AuthServiceGlobalExceptionHandler {
 
     @ExceptionHandler(InvalidAuthAccessTokenException.class)
     public ResponseEntity<CustomErrorResponseDto> handleAuthException(RuntimeException ex) {
-        log.info("ProductServiceGlobalExceptionHandler::handleAuthException exception caught: {} ", ex.getMessage());
+        log.info("AuthServiceGlobalExceptionHandler::handleAuthException exception caught: {} ", ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(CustomErrorResponseDto.builder()
                 .status("UNAUTHORIZED-ACCESS-TOKEN")
                 .code(401)

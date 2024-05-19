@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9af98a70-5a9b-4605-b327-e24830633387" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/dto/AuthTokenValidationResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/util/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/advice/ApiGatewayGlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/dto/CustomErrorResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/exception/InvalidAuthAccessTokenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/exception/InvalidAuthAccessTokenException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/client/AuthServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/client/AuthServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/config/RestClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/config/WebClientConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/advice/AuthServiceGlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/dev/kei/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/advice/InventoryServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/advice/InventoryServiceGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/advice/OrderServiceGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/dev/kei/advice/OrderServiceGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,9 +83,9 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api-gateway/src/main/java/dev/kei" />
+      <recent name="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/user-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/user-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/inventory-service/src/main/java/dev/kei" />
       <recent name="$PROJECT_DIR$/order-service/src/main/java/dev/kei" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -92,33 +93,7 @@
       <recent name="dev.kei.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApiGatewayApp">
-    <configuration name="ApiGatewayApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.ApiGatewayApp" />
-      <module name="api-gateway" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.kei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.kei.AuthServiceApp" />
-      <module name="auth-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.kei.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.OrderServiceApp">
     <configuration name="InventoryServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kei.InventoryServiceApp" />
       <module name="inventory-service" />
@@ -158,6 +133,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProductServiceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.ProductServiceApp" />
+      <module name="product-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceDiscoveryApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.kei.ServiceDiscoveryApp" />
+      <module name="service-discovery" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.kei.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -165,19 +166,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.ProductServiceApp" />
+      <item itemvalue="Application.ServiceDiscoveryApp" />
       <item itemvalue="Application.NotificationServiceApp" />
-      <item itemvalue="Application.AuthServiceApp" />
-      <item itemvalue="Application.ApiGatewayApp" />
       <item itemvalue="Application.InventoryServiceApp" />
       <item itemvalue="Application.OrderServiceApp" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApp" />
-        <item itemvalue="Application.AuthServiceApp" />
+        <item itemvalue="Application.ProductServiceApp" />
         <item itemvalue="Application.InventoryServiceApp" />
-        <item itemvalue="Application.NotificationServiceApp" />
         <item itemvalue="Application.OrderServiceApp" />
+        <item itemvalue="Application.NotificationServiceApp" />
+        <item itemvalue="Application.ServiceDiscoveryApp" />
       </list>
     </recent_temporary>
   </component>

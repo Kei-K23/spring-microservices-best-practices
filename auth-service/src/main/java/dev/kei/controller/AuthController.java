@@ -60,7 +60,6 @@ public class AuthController {
                     .message("Valid token")
                     .build());
         } catch (Exception ex) {
-            System.out.println("ERROR HERE :::::" + ex.getMessage());
             throw new InvalidAuthAccessTokenException("Invalid access token");
         }
     }
@@ -125,7 +124,7 @@ public class AuthController {
         return null;
     }
 
-    public ResponseEntity<AuthTokenValidationResponseDto> validateFallback(AuthRequestDto authRequestDto, Exception ex) {
+    public ResponseEntity<AuthTokenValidationResponseDto> validateFallback(String token, Exception ex) {
         handleFallback(ex);
         return null;
     }
@@ -150,9 +149,11 @@ public class AuthController {
             log.info("NotFoundException in fallback");
             throw new NoSuchElementException("User not found");
         } else if (ex instanceof IllegalArgumentException) {
+            log.info("IllegalArgumentException in fallback");
             throw new IllegalArgumentException(ex.getMessage());
         } else if (ex instanceof InvalidAuthAccessTokenException) {
-            throw new InvalidAuthAccessTokenException(ex.getMessage());
+            log.info("InvalidAuthAccessTokenException in fallback");
+            throw new InvalidAuthAccessTokenException("Invalid access token");
         } else {
             log.info("Rate limit exceeded");
             throw new RuntimeException("You have reached your rate limit. Please try again in 30 seconds.");
