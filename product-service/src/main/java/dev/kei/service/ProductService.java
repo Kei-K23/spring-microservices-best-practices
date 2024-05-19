@@ -1,6 +1,7 @@
 package dev.kei.service;
 
-import dev.kei.client.BackupServiceClient;
+import dev.kei.client.BackupInventoryServiceClient;
+import dev.kei.client.BackupProductServiceClient;
 import dev.kei.client.InventoryServiceClient;
 import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.ProductRequestDto;
@@ -18,14 +19,17 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final InventoryServiceClient inventoryServiceClient;
-    private final BackupServiceClient backupServiceClient;
+    private final BackupInventoryServiceClient backupInventoryServiceClient;
+    private final BackupProductServiceClient backupProductServiceClient;
 
     public ProductService(ProductRepository productRepository,
                           InventoryServiceClient inventoryServiceClient,
-                          BackupServiceClient backupServiceClient) {
+                          BackupInventoryServiceClient backupInventoryServiceClient,
+                          BackupProductServiceClient backupProductServiceClient) {
         this.productRepository = productRepository;
         this.inventoryServiceClient = inventoryServiceClient;
-        this.backupServiceClient = backupServiceClient;
+        this.backupInventoryServiceClient = backupInventoryServiceClient;
+        this.backupProductServiceClient = backupProductServiceClient;
     }
 
     // get all products
@@ -62,7 +66,8 @@ public class ProductService {
                     .stock(product.getStock())
                     .build();
             inventoryServiceClient.createInventoryItemFromProduct(inventoryRequestDto);
-            backupServiceClient.createProductForBackupService(inventoryRequestDto);
+            backupInventoryServiceClient.createInventoryItemForBackupService(inventoryRequestDto);
+            backupProductServiceClient.createProductForBackupService(productRequestDto);
         } catch (Exception ex) {
             // If there is an exception, rollback the transaction
             throw new RuntimeException("Failed to create inventory item, rolling back transaction", ex);
@@ -91,7 +96,8 @@ public class ProductService {
                     .stock(existingProduct.getStock())
                     .build();
             inventoryServiceClient.updateInventoryItemFromProduct(inventoryRequestDto);
-            backupServiceClient.updateProductForBackupService(inventoryRequestDto);
+            backupInventoryServiceClient.updateInventoryItemForBackupService(inventoryRequestDto);
+            backupProductServiceClient.updateProductForBackupService(id, productRequestDto);
 
             productRepository.save(existingProduct);
 
@@ -111,7 +117,9 @@ public class ProductService {
         try {
             // internal communication with inventory service to delete inventory item stock
             inventoryServiceClient.deleteInventoryItemFromProduct(id);
-            backupServiceClient.deleteProductForBackupService(id);
+            backupInventoryServiceClient.deleteInventoryItemForBackupService(id);
+            backupProductServiceClient.deleteProductForBackupService(id);
+
             productRepository.deleteById(id);
         } catch (Exception ex) {
             throw new RuntimeException(ex.getMessage());

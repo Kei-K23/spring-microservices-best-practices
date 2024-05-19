@@ -2,6 +2,8 @@ package dev.kei.client;
 
 import dev.kei.dto.InventoryRequestDto;
 import dev.kei.dto.InventoryResponseDto;
+import dev.kei.dto.ProductRequestDto;
+import dev.kei.dto.ProductResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,42 +13,42 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 @Slf4j
-public class BackupServiceClient {
+public class BackupProductServiceClient {
     private final RestTemplate backupRestTemplate;
 
-    public BackupServiceClient(RestTemplate backupRestTemplate) {
+    public BackupProductServiceClient(RestTemplate backupRestTemplate) {
         this.backupRestTemplate = backupRestTemplate;
     }
 
-    public void createProductForBackupService(InventoryRequestDto inventoryRequestDto) {
+    public void createProductForBackupService(ProductRequestDto productRequestDto) {
         log.info("Calling back up service to create product");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
-        HttpEntity<InventoryRequestDto> requestEntity = new HttpEntity<>(inventoryRequestDto, headers);
+        HttpEntity<ProductRequestDto> requestEntity = new HttpEntity<>(productRequestDto, headers);
         var response = backupRestTemplate.exchange("/backup/products",
                 HttpMethod.POST,
                 requestEntity,
-                InventoryResponseDto.class).getBody();
-        log.info("Inventory service response: {}", response);
+                ProductResponseDto.class).getBody();
+        log.info("Backup Product service response: {}", response);
     }
 
-    public void updateProductForBackupService(InventoryRequestDto inventoryRequestDto) {
+    public void updateProductForBackupService(String id, ProductRequestDto productRequestDto) {
         log.info("Calling back up service to update product");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
-        HttpEntity<InventoryRequestDto> requestEntity = new HttpEntity<>(inventoryRequestDto, headers);
-        var response = backupRestTemplate.exchange("/backup/products?productId=" + inventoryRequestDto.getProductId(),
+        HttpEntity<ProductRequestDto> requestEntity = new HttpEntity<>(productRequestDto, headers);
+        var response = backupRestTemplate.exchange("/backup/products/" + id,
                 HttpMethod.PUT,
                 requestEntity,
-                InventoryResponseDto.class).getBody();
-        log.info("Inventory service response: {}", response);
+                ProductResponseDto.class).getBody();
+        log.info("Backup Product service response: {}", response);
     }
 
-    public void deleteProductForBackupService(String productId) {
+    public void deleteProductForBackupService(String id) {
         log.info("Calling back up service to delete product");
 
         // Create headers if needed
@@ -56,12 +58,12 @@ public class BackupServiceClient {
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
 
         var response = backupRestTemplate.exchange(
-                "/backup/products?productId=" + productId,
+                "/backup/products/" + id,
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class
         );
 
-        log.info("Inventory service response: {}", response);
+        log.info("Backup Product service response: {}", response);
     }
 }
